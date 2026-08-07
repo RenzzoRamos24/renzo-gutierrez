@@ -31,12 +31,24 @@ var DEMOS = {
     nota:   "Grabación de pantalla con datos de prueba. Sin RUCs ni montos reales."
   },
 
-  /* 07 — Nexplanilla. Mismo procedimiento que el anterior cuando la tengas. */
+  /* 07 — Nexplanilla. YA CONECTADA. El orden de las capturas sigue el
+     recorrido real de la aplicación, igual que su menú lateral. */
   "planillas-app": {
     titulo: "Nexplanilla — aplicación de planillas",
-    tipo:   "",
-    src:    "",
-    nota:   "En desarrollo. La demo se publica cuando la primera versión esté estable."
+    tipo:   "fotos",
+    src:    [
+      { img: "demos/nexplanilla-empresa.jpg",
+        pie: "Alta de empresas: cada una con su régimen laboral, comisión AFP y SCTR." },
+      { img: "demos/nexplanilla-trabajadores.jpg",
+        pie: "Maestro de trabajadores de la empresa activa, con cargo, régimen pensionario y AFP." },
+      { img: "demos/nexplanilla-calculos.jpg",
+        pie: "Cálculo del período: ingresos, descuentos y neto a pagar, recalculado al entrar." },
+      { img: "demos/nexplanilla-archivos.jpg",
+        pie: "Generación del .jor y el .rem que importa el PDT PLAME." },
+      { img: "demos/nexplanilla-asistente.jpg",
+        pie: "Asistente de IA: interpreta el pedido del cliente y propone los cambios. Nada se modifica sin confirmación." }
+    ],
+    nota:   "Capturas de la versión en desarrollo, con datos de prueba. Sin RUCs, DNIs ni sueldos reales."
   }
 
 };
