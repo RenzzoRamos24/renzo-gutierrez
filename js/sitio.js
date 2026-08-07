@@ -150,7 +150,9 @@
     } else if (d.tipo === 'fotos' && d.src && d.src.length) {
       mKind.textContent = '/ capturas';
       mFull.hidden = false;
-      var h = '<div class="shots">';
+      var h = '';
+      if (d.aviso) { h += '<p class="shots-aviso">' + esc(d.aviso) + '</p>'; }
+      h += '<div class="shots">';
       d.src.forEach(function (s) {
         h += '<figure><img src="' + esc(s.img) + '" alt="' + esc(s.pie || '') + '" loading="lazy">' +
              (s.pie ? '<figcaption>' + esc(s.pie) + '</figcaption>' : '') + '</figure>';

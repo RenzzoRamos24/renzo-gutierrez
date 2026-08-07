@@ -12,6 +12,11 @@
    Ejemplo de "fotos":
      src: [{img:"demos/paso-1.png", pie:"Carga por lote"},
            {img:"demos/paso-2.png", pie:"Resultado"}]
+
+   aviso: opcional. Sale como recuadro destacado encima de las capturas.
+          Sirve para advertir que los datos son ficticios. Ojo: no se ve
+          al ampliar una foto ni si alguien la descarga, así que la misma
+          advertencia va grabada dentro de cada imagen.
    ===================================================================== */
 var DEMOS = {
 
@@ -48,7 +53,8 @@ var DEMOS = {
       { img: "demos/nexplanilla-asistente.jpg",
         pie: "Asistente de IA: interpreta el pedido del cliente y propone los cambios. Nada se modifica sin confirmación." }
     ],
-    nota:   "Capturas de la versión en desarrollo, con datos de prueba. Sin RUCs, DNIs ni sueldos reales."
+    aviso:  "Todos los datos que se ven en estas capturas son ficticios: empresas, RUCs, nombres, DNIs y sueldos están inventados para no exponer información de ningún cliente. La aplicación es real; los datos no.",
+    nota:   "Capturas de la versión en desarrollo."
   }
 
 };

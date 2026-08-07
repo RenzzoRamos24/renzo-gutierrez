@@ -1,5 +1,7 @@
-# original sin comprimir de la demo: se conserva en local, no se publica
+# originales que se conservan en local pero no se publican:
+# el video sin comprimir y las capturas sin la marca de datos ficticios
 demos/importador-original.mp4
+demos/sin-marca/
 
 # basura del sistema
 Thumbs.db

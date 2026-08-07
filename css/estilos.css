@@ -324,6 +324,11 @@ a.card{text-decoration:none;display:block}
 .modal-body video,.modal-body iframe{width:100%;border:1px solid var(--hair);background:#000;display:block}
 .modal-body video{aspect-ratio:16/9}
 .modal-body iframe{height:min(62vh,620px)}
+.shots-aviso{
+  font-family:var(--mono);font-size:10px;line-height:1.8;color:var(--text-2);
+  border:1px solid var(--hair-2);border-left:2px solid var(--dia);
+  padding:11px 14px;margin:0 0 16px;background:var(--bg);
+}
 .shots{display:grid;gap:14px}
 .shots figure{margin:0}
 .shots img{width:100%;border:1px solid var(--hair);cursor:zoom-in}
