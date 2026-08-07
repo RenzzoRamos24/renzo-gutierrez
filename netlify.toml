@@ -1,0 +1,9 @@
+# Sitio estático sin build: se publica la carpeta tal cual.
+[build]
+  publish = "."
+
+# El video de la demo no cambia de contenido; se cachea a largo plazo.
+[[headers]]
+  for = "/demos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renzo Gutiérrez — ingeniero de sistemas</title>
+<meta name="description" content="Renzo Gutiérrez, ingeniero de sistemas en Lima. Automatizo procesos, construyo software a medida y administro infraestructura. Experiencia en finanzas, cobranza, transporte, catering, contabilidad, inmobiliaria, educación y tecnología.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ MODO DÍA — azul diamante + verde lima sobre grafito neutro ============ */
+:root{
+  --bg:#FFFFFF; --bg-2:#F6F7F8; --bg-3:#ECEEF0;
+  --band:#191B1F; --band-card:#22252A; --band-text:#FFFFFF;
+  --band-sub:#A3A8AF; --band-mute:#7E848C; --band-line:rgba(255,255,255,.12); --band-chip:#DCDFE3;
+  --text:#191B1F; --text-2:#45494F; --text-3:#71767D;
+  --hair:#E4E5E8; --hair-2:#C7C9CE;
+  --dia:#0B87C9; --dia-lt:#4FC8F2; --dia-soft:#E6F4FB; --dia-glow:rgba(11,135,201,.13);
+  --lima:#5F9E12; --lima-lt:#A3D93B; --lima-dk:#4C800C;
+  --lima-soft:#F2F8E5; --lima-line:#DCEAC2; --lima-glow:rgba(95,158,18,.14);
+  --btn-bg:#191B1F; --btn-fg:#FFFFFF;
+  --shadow:0 16px 34px -24px rgba(25,27,31,.55);
+  --dsp:'Space Grotesk',system-ui,sans-serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --rail:270px; --pad:clamp(20px,3.4vw,56px); --navh:60px;
+}
+/* ============ MODO NOCHE — grafito neutro ============ */
+html[data-theme="dark"]{
+  --bg:#16181C; --bg-2:#1C1F24; --bg-3:#23272D;
+  --band:#212429; --band-card:#2A2E35; --band-text:#ECEEF1;
+  --band-sub:#A5ABB3; --band-mute:#868D96; --band-line:rgba(255,255,255,.1); --band-chip:#D2D6DB;
+  --text:#ECEEF1; --text-2:#B6BBC2; --text-3:#868D96;
+  --hair:#2B2F36; --hair-2:#3D434C;
+  --dia:#4FC8F2; --dia-lt:#7BD8F7; --dia-soft:rgba(79,200,242,.13); --dia-glow:rgba(79,200,242,.12);
+  --lima:#A3D93B; --lima-lt:#BDE86A; --lima-dk:#BDE86A;
+  --lima-soft:rgba(163,217,59,.09); --lima-line:rgba(163,217,59,.22); --lima-glow:rgba(163,217,59,.13);
+  --btn-bg:#ECEEF1; --btn-fg:#16181C;
+  --shadow:0 16px 36px -22px rgba(0,0,0,.85);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:clamp(15.4px,.55vw + 13.2px,16.4px);line-height:1.66;
+  font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;
+  transition:background .35s ease,color .35s ease;
+}
+body.locked{overflow:hidden}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-family:var(--dsp);font-weight:600;letter-spacing:-.025em;line-height:1.12;text-wrap:balance}
+img{max-width:100%;display:block}
+
+.shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr)}
+
+/* ================= barra lateral ================= */
+.rail{
+  position:sticky;top:0;height:100vh;overflow-y:auto;padding:24px 26px 26px;
+  display:flex;flex-direction:column;gap:22px;background:var(--bg);border-right:1px solid var(--hair);
+  transition:background .35s ease,border-color .35s ease;
+}
+.rail::-webkit-scrollbar{width:0}
+.rail::after{content:"";position:absolute;top:0;right:-1px;width:2px;height:190px;background:linear-gradient(180deg,var(--dia),var(--lima))}
+.rail-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.rail-kicker{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+.themetog{
+  font-family:var(--mono);font-size:10px;color:var(--text-3);background:var(--bg-2);
+  border:1px solid var(--hair);padding:7px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+  transition:.2s;line-height:1;
+}
+.themetog:hover{border-color:var(--dia);color:var(--dia)}
+html:not([data-theme="dark"]) .i-moon{display:none}
+html[data-theme="dark"] .i-sun{display:none}
+.wordmark{border-top:2px solid var(--text);padding-top:16px}
+.wordmark h1{font-size:1.72rem;letter-spacing:-.045em;line-height:1.02}
+.role{font-family:var(--mono);font-size:10.5px;color:var(--text-3);margin-top:10px;line-height:1.7}
+.avail{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--lima-dk);margin-top:14px;background:var(--lima-soft);padding:6px 10px;border:1px solid var(--lima-line)}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--lima);flex:none;box-shadow:0 0 0 3px var(--lima-glow)}
+.railnav{display:flex;flex-direction:column;gap:1px}
+.railnav a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--text-3);padding:7px 0 7px 14px;border-left:2px solid var(--hair);transition:.18s}
+.railnav a::before{content:"/ ";color:var(--hair-2)}
+.railnav a:hover{color:var(--text);border-left-color:var(--hair-2)}
+.railnav a.on{color:var(--dia);border-left-color:var(--dia);background:var(--dia-soft)}
+.railnav a.on::before{color:var(--lima)}
+.focus{border-top:1px solid var(--hair);padding-top:16px}
+.focus h2{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:11px}
+.focus ul{margin:0;padding:0;list-style:none;font-size:.86rem;color:var(--text-2);line-height:1.95}
+.focus li{display:flex;align-items:center;gap:9px}
+.focus li::before{content:"";width:5px;height:5px;flex:none;background:var(--lima);transform:rotate(45deg)}
+.railfoot{margin-top:auto;padding-top:18px;border-top:1px solid var(--hair);display:flex;flex-direction:column;gap:8px}
+.railfoot a{font-family:var(--mono);font-size:11px;color:var(--text-2);text-decoration:none;transition:color .18s}
+.railfoot a:hover{color:var(--dia)}
+.railfoot small{font-family:var(--mono);font-size:9px;color:var(--text-3);margin-top:6px;line-height:1.75;opacity:.8}
+
+.topbar{display:none}
+@media(max-width:940px){
+  .shell{grid-template-columns:1fr}
+  .rail{display:none}
+  .topbar{display:block;position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--hair)}
+  .topbar::before{content:"";display:block;height:3px;background:linear-gradient(90deg,var(--dia),var(--lima) 60%,transparent)}
+  .tb-in{display:flex;align-items:center;gap:12px;padding:0 var(--pad);height:var(--navh)}
+  .tb-name{font-family:var(--dsp);font-weight:600;font-size:16px;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+  .tb-links{display:flex;gap:15px;margin-left:auto;overflow-x:auto;font-family:var(--mono);font-size:11px}
+  .tb-links::-webkit-scrollbar{display:none}
+  .tb-links a{text-decoration:none;color:var(--text-3);white-space:nowrap}
+}
+
+/* ================= base ================= */
+.main{min-width:0}
+.inner{max-width:900px;padding:0 var(--pad)}
+section{padding:clamp(56px,7vw,94px) 0;transition:background .35s ease}
+[id]{scroll-margin-top:calc(var(--navh) + 18px)}
+@media(min-width:941px){[id]{scroll-margin-top:24px}}
+.tag{font-family:var(--mono);font-size:10.5px;color:var(--dia);display:inline-flex;align-items:center;gap:8px}
+.tag::before{content:"";width:16px;height:2px;background:linear-gradient(90deg,var(--dia),var(--lima))}
+.h2{font-size:clamp(1.6rem,2.9vw,2.25rem);margin-top:14px;letter-spacing:-.035em;max-width:24ch}
+.sub{color:var(--text-2);margin-top:14px;max-width:58ch}
+.sec-top{padding-bottom:clamp(26px,3.2vw,40px)}
+.band{background:var(--band);color:var(--band-text)}
+.band .h2,.band h2,.band h3{color:var(--band-text)}
+.band .tag{color:var(--dia-lt)}
+.band .tag::before{background:linear-gradient(90deg,var(--dia-lt),var(--lima-lt))}
+.band .sub{color:var(--band-sub)}
+
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.cards.tres{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:var(--bg);border:1px solid var(--hair);padding:24px 22px 26px;position:relative;
+  transition:transform .22s cubic-bezier(.22,.68,.32,1),border-color .22s,box-shadow .22s,background .35s ease;
+}
+.card::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:2px;background:var(--dia);opacity:0;transition:opacity .22s}
+.card:hover{transform:translateY(-3px);border-color:var(--hair-2);box-shadow:var(--shadow)}
+.card:hover::before{opacity:1}
+.band .card{background:var(--band-card);border-color:var(--band-line)}
+.band .card:hover{border-color:var(--dia-lt)}
+.band .card p{color:var(--band-sub)}
+.c-no{font-family:var(--mono);font-size:10.5px;color:var(--lima-dk);display:block;margin-bottom:12px}
+.band .c-no{color:var(--lima-lt)}
+.card h3{font-size:1.08rem;letter-spacing:-.025em;margin-bottom:9px}
+.card p{color:var(--text-2);font-size:.95rem}
+.mini{margin:15px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:5px 14px;font-family:var(--mono);font-size:10px;color:var(--text-3)}
+.band .mini{color:var(--band-mute)}
+.mini li{position:relative}
+.mini li:not(:last-child)::after{content:"·";position:absolute;right:-9px;opacity:.6}
+@media(max-width:820px){.cards,.cards.tres{grid-template-columns:1fr}}
+
+/* portada */
+.intro{padding-top:clamp(42px,6vw,80px);position:relative;overflow:hidden}
+.intro::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(var(--hair) 1px,transparent 1px);background-size:22px 22px;
+  mask-image:radial-gradient(80% 70% at 78% 8%,#000,transparent 70%);
+  -webkit-mask-image:radial-gradient(80% 70% at 78% 8%,#000,transparent 70%);
+}
+.intro::after{content:"";position:absolute;right:-160px;top:-120px;width:520px;height:520px;border-radius:50%;z-index:0;background:radial-gradient(50% 50% at 50% 50%,var(--dia-glow),transparent 70%);pointer-events:none}
+.intro .inner{position:relative;z-index:1}
+.intro h2{font-size:clamp(1.95rem,4.3vw,3.05rem);letter-spacing:-.045em;max-width:20ch;line-height:1.06;font-weight:700}
+.intro h2 b{color:var(--dia);font-weight:700;position:relative;white-space:nowrap}
+.intro h2 b::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.28em;background:var(--lima-glow);z-index:-1}
+.intro .lead{font-size:clamp(1.02rem,.55vw + .85rem,1.16rem);color:var(--text-2);max-width:55ch;margin-top:22px}
+.intro .lead+.lead{margin-top:14px}
+.cta{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin-top:30px}
+.btn{font-family:var(--mono);font-size:11.5px;text-decoration:none;background:var(--btn-bg);color:var(--btn-fg);padding:13px 22px;transition:.2s;border:0;cursor:pointer}
+.btn:hover{background:var(--dia);color:#fff}
+.lnk{font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--text-2);border-bottom:1px solid var(--hair-2);padding-bottom:3px;transition:.2s}
+.lnk:hover{color:var(--dia);border-bottom-color:var(--dia)}
+.stats{display:flex;flex-wrap:wrap;margin-top:clamp(38px,4.5vw,54px);border-top:2px solid var(--text)}
+.stat{padding:18px 26px 20px 0;border-right:1px solid var(--hair);flex:1 1 150px}
+.stat:last-child{border-right:0}
+.stat:not(:first-child){padding-left:26px}
+.stat b{display:block;font-family:var(--dsp);font-weight:600;font-size:1.55rem;letter-spacing:-.035em;line-height:1;color:var(--dia)}
+.stat span{font-family:var(--mono);font-size:9.5px;color:var(--text-3);display:block;margin-top:9px;line-height:1.65}
+@media(max-width:640px){.stat{flex:1 1 45%;padding:16px 18px 18px 0!important}.stat:nth-child(2n){border-right:0;padding-left:18px!important}}
+
+/* rubros */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chips span{font-family:var(--mono);font-size:11px;color:var(--band-chip);border:1px solid var(--band-line);padding:8px 13px;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.chips span::before{content:"";width:5px;height:5px;background:var(--lima-lt);flex:none}
+.chips span:hover{border-color:var(--lima-lt);background:rgba(163,217,59,.1)}
+
+/* ahora */
+.now{background:var(--lima-soft);border-top:1px solid var(--lima-line);border-bottom:1px solid var(--lima-line)}
+.now .tag{color:var(--lima-dk)}
+.now .tag::before{background:var(--lima)}
+.now-list{margin-top:24px;border-top:1px solid var(--lima-line)}
+.now-item{display:grid;grid-template-columns:18px 1fr;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--lima-line)}
+.now-item i{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--lima-dk);line-height:1.7}
+.now-item p{color:var(--text-2)}
+.now-item p b{color:var(--text);font-weight:600}
+
+/* proyectos */
+.works{display:flex;flex-direction:column;gap:16px}
+.work{
+  border:1px solid var(--hair);background:var(--bg);padding:24px 24px 26px;position:relative;
+  transition:transform .22s cubic-bezier(.22,.68,.32,1),border-color .22s,box-shadow .22s,background .35s ease;
+}
+.work::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:2px;background:linear-gradient(180deg,var(--dia),var(--lima));opacity:0;transition:opacity .22s}
+.work:hover{transform:translateY(-3px);border-color:var(--hair-2);box-shadow:var(--shadow)}
+.work:hover::before{opacity:1}
+.w-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.w-no{font-family:var(--mono);font-size:11px;color:var(--dia);font-weight:500}
+.work h3{font-size:clamp(1.14rem,1.8vw,1.36rem);letter-spacing:-.03em}
+.state{font-family:var(--mono);font-size:9.5px;padding:3px 9px;white-space:nowrap;margin-left:auto}
+.s-live{background:var(--lima-dk);color:#fff}
+html[data-theme="dark"] .s-live{color:#16181C}
+.s-wip{color:var(--dia);background:var(--dia-soft);border:1px solid var(--dia-soft)}
+.s-run{color:var(--text-2);background:var(--bg-3)}
+.w-meta{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:8px}
+.diff{margin-top:18px;border:1px solid var(--hair);font-size:.95rem;overflow:hidden}
+.d{display:grid;grid-template-columns:32px 1fr;align-items:stretch}
+.d:first-child{border-bottom:1px solid var(--hair)}
+.d .mk{font-family:var(--mono);font-size:13px;text-align:center;padding:14px 0 0;border-right:1px solid var(--hair)}
+.d .tx{padding:13px 16px 15px}
+.d .tx em{font-style:normal;display:block;font-family:var(--mono);font-size:9.5px;color:var(--text-3);margin-bottom:5px}
+.d-out{background:var(--bg-2)}
+.d-out .mk{color:var(--text-3)}
+.d-out .tx{color:var(--text-2)}
+.d-in{background:var(--lima-soft)}
+.d-in .mk{color:var(--lima-dk);border-right-color:var(--lima-line)}
+.d-in .tx em{color:var(--lima-dk)}
+.w-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:16px}
+.w-stack{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:5px 16px;font-family:var(--mono);font-size:10.5px;color:var(--text-3);flex:1 1 auto}
+.w-stack li{position:relative}
+.w-stack li:not(:last-child)::after{content:"·";position:absolute;right:-10px;opacity:.6}
+
+/* botón de demo */
+.demo-btn{
+  font-family:var(--mono);font-size:10.5px;color:var(--dia);background:transparent;
+  border:1px solid var(--dia);padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+  transition:.2s;white-space:nowrap;
+}
+.demo-btn:hover{background:var(--dia);color:#fff}
+html[data-theme="dark"] .demo-btn:hover{color:#16181C}
+.demo-btn svg{flex:none}
+
+/* ================= ventana de demo ================= */
+.modal[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:clamp(12px,3vw,40px)}
+.modal-back{position:absolute;inset:0;background:rgba(15,17,20,.72);backdrop-filter:blur(4px);animation:fade .2s ease}
+.modal-box{
+  position:relative;width:min(1000px,100%);max-height:90vh;display:flex;flex-direction:column;
+  background:var(--bg);border:1px solid var(--hair-2);box-shadow:0 30px 70px -30px rgba(0,0,0,.7);
+  animation:pop .24s cubic-bezier(.22,.68,.32,1);
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.modal-head{display:flex;align-items:flex-start;gap:16px;padding:20px 22px 16px;border-bottom:1px solid var(--hair)}
+.modal-head .mh-tag{font-family:var(--mono);font-size:9.5px;color:var(--dia);display:block;margin-bottom:7px}
+.modal-head h3{font-size:1.14rem;letter-spacing:-.028em}
+.modal-x{
+  margin-left:auto;background:transparent;border:1px solid var(--hair);color:var(--text-3);
+  width:32px;height:32px;flex:none;cursor:pointer;font-size:15px;line-height:1;transition:.2s;
+}
+.modal-x:hover{border-color:var(--dia);color:var(--dia)}
+.modal-body{padding:22px;overflow:auto;background:var(--bg-2)}
+.modal-body video,.modal-body iframe{width:100%;border:1px solid var(--hair);background:#000;display:block}
+.modal-body video{aspect-ratio:16/9}
+.modal-body iframe{height:min(62vh,620px)}
+.shots{display:grid;gap:14px}
+.shots figure{margin:0}
+.shots img{width:100%;border:1px solid var(--hair)}
+.shots figcaption{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:8px}
+.pending{
+  border:1px dashed var(--hair-2);padding:clamp(30px,6vw,56px) 26px;text-align:center;background:var(--bg);
+}
+.pending b{display:block;font-family:var(--dsp);font-size:1.05rem;margin-bottom:10px;letter-spacing:-.02em}
+.pending p{color:var(--text-3);font-size:.93rem;max-width:44ch;margin:0 auto}
+.modal-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding:15px 22px;border-top:1px solid var(--hair)}
+.modal-foot p{font-family:var(--mono);font-size:10px;color:var(--text-3);flex:1 1 240px;line-height:1.7}
+.modal-foot a{font-family:var(--mono);font-size:10.5px;color:var(--dia);text-decoration:none;border-bottom:1px solid var(--dia);padding-bottom:2px}
+
+/* sobre mí */
+.about-grid{display:grid;grid-template-columns:1fr 296px;gap:clamp(28px,4vw,54px);align-items:start}
+.about p{color:var(--text-2);max-width:62ch}
+.about p+p{margin-top:16px}
+.about strong{color:var(--text);font-weight:600}
+.aside-col{position:sticky;top:32px}
+.ficha{border:1px solid var(--hair);background:var(--bg-2);padding:24px 22px 26px;position:relative}
+.ficha::before{content:"";position:absolute;left:-1px;top:-1px;width:2px;height:56px;background:linear-gradient(180deg,var(--dia),var(--lima))}
+.ficha h3{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:18px}
+.ficha dl{margin:0}
+.ficha dt{font-family:var(--mono);font-size:9.5px;color:var(--dia);margin-bottom:5px}
+.ficha dd{margin:0 0 16px;font-size:.93rem;line-height:1.5;color:var(--text-2)}
+.ficha dd:last-child{margin-bottom:0}
+.ficha dd b{color:var(--text);font-weight:600}
+.photo{margin:0 0 16px}
+.photo .frame{border:1px solid var(--hair);background:var(--bg-3);aspect-ratio:4/5;overflow:hidden}
+.photo .frame img{width:100%;height:100%;object-fit:cover}
+.photo figcaption{margin-top:12px;font-family:var(--mono);font-size:9.5px;color:var(--text-3)}
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .aside-col{position:static;margin-top:26px}
+}
+.timeline{margin-top:clamp(34px,4vw,50px)}
+.job{display:grid;grid-template-columns:118px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--hair)}
+.job:last-child{border-bottom:1px solid var(--hair)}
+.job .when{font-family:var(--mono);font-size:10.5px;color:var(--text-3);padding-top:.35em}
+.job h3{font-size:1.1rem;letter-spacing:-.025em}
+.job .where{font-family:var(--mono);font-size:10px;color:var(--dia);display:block;margin:6px 0 9px}
+.job p{color:var(--text-2);font-size:.97rem}
+@media(max-width:640px){.job{grid-template-columns:1fr;gap:8px}}
+
+/* investigación */
+.kind{font-family:var(--mono);font-size:9.5px;color:var(--band);background:var(--lima-lt);padding:3px 9px;display:inline-block;margin-bottom:14px}
+.cite{font-family:var(--mono);font-size:10px;color:var(--band-mute);margin-top:8px}
+.card .abs{margin-top:12px}
+
+/* stack */
+.sg h3{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--dia-lt);margin-bottom:14px;display:inline-flex;align-items:center;gap:7px}
+.sg h3::before{content:"";width:6px;height:6px;background:var(--lima-lt);flex:none}
+.sg ul{margin:0;padding:0;list-style:none;font-size:.93rem;color:var(--band-sub);line-height:1.95}
+
+/* contacto */
+.contact .h2{font-size:clamp(1.75rem,3.2vw,2.5rem);letter-spacing:-.04em;max-width:17ch}
+a.card{text-decoration:none;display:block}
+.card dt{font-family:var(--mono);font-size:9.5px;color:var(--band-mute);margin-bottom:10px}
+.card .val{font-family:var(--dsp);font-weight:600;font-size:1.02rem;letter-spacing:-.02em;word-break:break-word;color:var(--band-text)}
+.band a.card:hover .val{color:var(--dia-lt)}
+.card .val small{display:block;font-family:var(--mono);font-size:9.5px;color:var(--band-mute);margin-top:6px;font-weight:400}
+.colofon{border-top:1px solid var(--band-line);padding-top:22px;margin-top:clamp(36px,4.5vw,56px)}
+.colofon p{font-family:var(--mono);font-size:9.5px;color:var(--band-mute);line-height:1.9}
+
+:focus-visible{outline:2px solid var(--dia);outline-offset:3px}
+.rv{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s cubic-bezier(.22,.68,.32,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .card:hover,.work:hover{transform:none}
+  body,section,.card,.work,.rail{transition:none!important}
+  .modal-back,.modal-box{animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-in">
+    <a class="tb-name" href="#inicio">Renzo Gutiérrez</a>
+    <button class="themetog js-theme" type="button" aria-label="Cambiar entre modo día y noche">
+      <svg class="i-sun" width="13" height="13" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg class="i-moon" width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span class="js-theme-label">día</span>
+    </button>
+    <nav class="tb-links">
+      <a href="#rubros">rubros</a>
+      <a href="#proyectos">proyectos</a>
+      <a href="#sobre-mi">sobre mí</a>
+      <a href="#investigacion">investigación</a>
+      <a href="#servicios">servicios</a>
+      <a href="#stack">stack</a>
+      <a href="#contacto">contacto</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+
+  <aside class="rail">
+    <div class="rail-top">
+      <span class="rail-kicker">sitio personal</span>
+      <button class="themetog js-theme" type="button" aria-label="Cambiar entre modo día y noche">
+        <svg class="i-sun" width="13" height="13" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-moon" width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="js-theme-label">día</span>
+      </button>
+    </div>
+
+    <div class="wordmark">
+      <h1>Renzo<br>Gutiérrez</h1>
+      <p class="role">ingeniero de sistemas<br>Lima, Perú</p>
+      <p class="avail"><span class="pulse"></span> disponible para proyectos</p>
+    </div>
+
+    <nav class="railnav" id="railnav">
+      <a href="#inicio">inicio</a>
+      <a href="#rubros">rubros</a>
+      <a href="#ahora">ahora</a>
+      <a href="#proyectos">proyectos</a>
+      <a href="#sobre-mi">sobre mí</a>
+      <a href="#investigacion">investigación</a>
+      <a href="#servicios">servicios</a>
+      <a href="#stack">stack</a>
+      <a href="#contacto">contacto</a>
+    </nav>
+
+    <div class="focus">
+      <h2>en qué trabajo</h2>
+      <ul>
+        <li>automatización</li>
+        <li>software a medida</li>
+        <li>infraestructura</li>
+        <li>IA aplicada</li>
+      </ul>
+    </div>
+
+    <div class="railfoot">
+      <a href="mailto:renzogutierrez966111@gmail.com">correo</a>
+      <a href="https://wa.me/51966111242" target="_blank" rel="noopener noreferrer">whatsapp</a>
+      <small>© 2026 · escrito a mano<br>en HTML y CSS</small>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <section class="intro" id="inicio">
+      <div class="inner">
+        <span class="tag">hola</span>
+        <h2>Automatizo el trabajo repetitivo que hoy alguien hace <b>a mano</b>.</h2>
+        <p class="lead">Soy Renzo. Construyo software que saca el trabajo manual de en medio: importadores, integraciones, aplicaciones a medida y modelos que leen y clasifican información. También administro la infraestructura donde todo eso corre.</p>
+        <p class="lead">Mi ventaja no es dominar el rubro mejor que quien trabaja en él: es entender cómo está armado por debajo el software que usa todos los días, y atacar por ahí.</p>
+        <div class="cta">
+          <a class="btn" href="#proyectos">ver lo que he construido</a>
+          <a class="lnk" href="#contacto">escribirme →</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>9</b><span>sistemas construidos y en uso</span></div>
+          <div class="stat"><b>8</b><span>rubros distintos donde he trabajado</span></div>
+          <div class="stat"><b>3,000</b><span>documentos procesados en ~5 min</span></div>
+          <div class="stat"><b>0.9215</b><span>F1‑macro del modelo publicado</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="rubros">
+      <div class="inner">
+        <span class="tag">rubros</span>
+        <h2 class="h2">El proceso cambia de nombre según el rubro. El cuello de botella casi nunca cambia.</h2>
+        <p class="sub">He trabajado dentro de operaciones muy distintas, y en todas encontré lo mismo: gente copiando datos de un sistema a otro. Eso es lo que resuelvo.</p>
+        <div class="chips">
+          <span>finanzas</span><span>cobranza</span><span>transporte</span><span>catering</span>
+          <span>contabilidad</span><span>inmobiliaria</span><span>desarrollo y tecnología</span><span>educación</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="now" id="ahora">
+      <div class="inner">
+        <span class="tag">ahora</span>
+        <h2 class="h2">En qué estoy metido este mes.</h2>
+        <div class="now-list">
+          <div class="now-item"><i>→</i><p>Migrando un sistema de <b>planillas</b> de Excel a una aplicación propia en Python, con la especificación escrita antes del código.</p></div>
+          <div class="now-item"><i>→</i><p>Probando <b>lectura por OCR</b> de documentos escaneados para conciliarlos contra un registro externo sin digitar nada.</p></div>
+          <div class="now-item"><i>→</i><p>Dando soporte a la plataforma de cuestionarios que corre hoy en el <b>colegio Miguel de Cervantes</b>.</p></div>
+          <div class="now-item"><i>→</i><p>Presentando mi artículo en <b>IEEE INTERCON 2026</b>, en Trujillo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">proyectos</span>
+          <h2 class="h2">Nueve cosas que construí y hoy alguien usa.</h2>
+          <p class="sub">Lo escribo como un cambio: qué había antes, qué hay ahora. Los que tienen demo se pueden ver en marcha.</p>
+        </div>
+
+        <div class="works">
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">01</span><h3>Plataforma de cuestionarios con modelos de PNL</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">I.E.P. Colegio Miguel de Cervantes · educación · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Los cuestionarios se aplicaban en papel y cada respuesta abierta se leía e interpretaba a mano, sin forma de comparar entre grupos ni de detectar señales a tiempo.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Una plataforma que centraliza la aplicación de cuestionarios y clasifica automáticamente las respuestas con BETO y SVM, dos modelos de procesamiento de lenguaje natural en español. Instalada en el colegio y funcionando en la actualidad.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Vue.js 3</li><li>FastAPI</li><li>BETO</li><li>SVM</li><li>PostgreSQL</li><li>Azure</li></ul>
+              <button class="demo-btn js-demo" data-demo="colegio" type="button">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 1.2 10 6l-7.5 4.8V1.2Z"/></svg> ver demo
+              </button>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">02</span><h3>Importador masivo de documentos a un sistema cerrado</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Cada mes llegaban cientos de comprobantes en físico y el equipo los digitaba uno por uno, contra un plazo legal que no se mueve.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Carga por lote y por empresa: hasta 3,000 documentos en unos cinco minutos. El equipo pasó de digitar a revisar.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Python</li><li>VBA</li><li>DBF</li><li>Excel</li><li>escaneo ADF</li></ul>
+              <button class="demo-btn js-demo" data-demo="importador" type="button">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 1.2 10 6l-7.5 4.8V1.2Z"/></svg> ver demo
+              </button>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">03</span><h3>Asistente de IA con acceso a documentos internos</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Información dispersa entre correos, carpetas y sistemas; las mismas consultas resueltas a mano una y otra vez.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Asistente con memoria por usuario, ingesta automática de correo y confirmación humana obligatoria antes de ejecutar cualquier acción.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>FastAPI</li><li>ChromaDB</li><li>PostgreSQL</li><li>LLM con tool use</li><li>n8n</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">04</span><h3>Infraestructura completa de una oficina</h3><span class="state s-run">en operación</span></div>
+            <p class="w-meta">14 usuarios · servidor propio · 2024—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Archivos compartidos sin control de acceso ni respaldo verificado, PCs administradas una por una y ningún acceso remoto seguro.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Dominio con Active Directory y políticas de grupo, servidor de archivos, sincronización de carpetas personales, VPN propia, virtualización y respaldos verificados.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Proxmox</li><li>Windows Server · AD</li><li>Nextcloud</li><li>WireGuard</li><li>pfSense</li><li>Wazuh</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">05</span><h3>Motor de reglas para clasificación automática de registros</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2024—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>La categoría, la cuenta y el correlativo de cada registro se decidían y escribían a criterio de cada persona, documento por documento.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Clasificación automática con reglas configurables, normalización de identificadores y series de correlativo independientes por tipo de operación.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>VBA</li><li>Excel</li><li>reglas configurables</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">06</span><h3>Sistema de planillas multi‑empresa</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Armar las declaraciones de planilla a mano, empresa por empresa, con el riesgo de multa que eso arrastra.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Sistema de 14 hojas y 5 módulos que genera los archivos de carga y valida la información antes de declarar.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Excel</li><li>VBA</li><li>validación previa</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">07</span><h3>Aplicación de planillas</h3><span class="state s-wip">en desarrollo</span></div>
+            <p class="w-meta">servicios profesionales · 2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Todo el cálculo vive en un libro de Excel: potente, pero difícil de auditar, versionar y compartir entre varias personas a la vez.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Aplicación propia con la lógica separada de la interfaz, especificación escrita antes del desarrollo y base de datos en lugar de hojas.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Python</li><li>especificación previa</li><li>base de datos</li></ul>
+              <button class="demo-btn js-demo" data-demo="planillas-app" type="button">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 1.2 10 6l-7.5 4.8V1.2Z"/></svg> ver demo
+              </button>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">08</span><h3>Conciliación de documentos escaneados por OCR</h3><span class="state s-wip">en desarrollo</span></div>
+            <p class="w-meta">servicios profesionales · 2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Comparar a ojo cientos de documentos en papel contra lo que ya figura en un registro externo, para recién ahí detectar diferencias.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Escaneo por lote y lectura por OCR con código de anclaje: lo que el modelo no lee con seguridad sale marcado como no reconocido, en vez de colarse silencioso.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>OCR y visión</li><li>API externa</li><li>Python</li><li>autohospedaje</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">09</span><h3>Utilitarios de escritorio para soporte y acceso a red</h3><span class="state s-live">desplegado</span></div>
+            <p class="w-meta">14 equipos · 2024—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk">−</div><div class="tx"><em>antes</em>Cada reinstalación o cambio de equipo obligaba a reconectar unidades de red a mano y a repetir la misma rutina de limpieza y diagnóstico en cada PC.</div></div>
+              <div class="d d-in"><div class="mk">+</div><div class="tx"><em>ahora</em>Aplicación de escritorio que conecta al usuario con sus unidades del servidor, más un juego de utilitarios de diagnóstico y limpieza que corren en minutos.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Java</li><li>PowerShell</li><li>Windows</li><li>SMB</li></ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-mi">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">sobre mí</span>
+          <h2 class="h2">Cómo llegué acá.</h2>
+        </div>
+
+        <div class="about-grid about">
+          <div>
+            <p>Estudié ingeniería de sistemas en la UPC. Antes de trabajar por mi cuenta hice soporte de TI corporativo en el sector banca, y ahí aprendí algo que no te enseñan en clase: <strong>la diferencia entre un sistema que funciona y uno que la gente realmente usa.</strong></p>
+            <p>He trabajado dentro de operaciones de <strong>finanzas, cobranza, transporte, catering, contabilidad, inmobiliaria, educación y tecnología.</strong> Esa variedad me dio el ojo para reconocer rápido dónde está el cuello de botella, aunque el negocio me sea nuevo.</p>
+            <p>Trabajo en la intersección de tres cosas que rara vez coinciden en la misma persona: <strong>infraestructura, desarrollo y procesos de negocio.</strong> Puedo levantar un dominio con Active Directory, escribir el importador que ataca directamente el formato de datos de un sistema cerrado, y sentarme después con quien lo va a usar para ver si le sirve.</p>
+            <p>En paralelo hago investigación aplicada en aprendizaje automático. Esa disciplina se me pegó para el trabajo comercial: validar antes de construir, medir lo que se afirma, escribir la especificación antes del código. Para los encargos de infraestructura y mantenimiento continuo trabajo bajo el nombre <strong>Nexlayer</strong>.</p>
+          </div>
+
+          <div class="aside-col">
+
+            <!-- ===============================================================
+                 AQUÍ VA LA FOTO. Cuando la tengas, descomenta este bloque y
+                 deja el archivo junto al HTML. Recorte vertical, proporción 4:5.
+
+            <figure class="photo">
+              <div class="frame"><img src="foto.jpg" alt="Renzo Gutiérrez"></div>
+              <figcaption>Renzo Gutiérrez — Lima, 2026</figcaption>
+            </figure>
+
+            =============================================================== -->
+
+            <div class="ficha">
+              <h3>ficha rápida</h3>
+              <dl>
+                <dt>base</dt>
+                <dd><b>Lima, Perú</b><br>presencial y remoto</dd>
+                <dt>formación</dt>
+                <dd>Ingeniería de Sistemas<br>Universidad Peruana de Ciencias Aplicadas</dd>
+                <dt>enfoque</dt>
+                <dd>Automatización, software a medida, infraestructura e IA aplicada</dd>
+                <dt>publicación</dt>
+                <dd>IEEE INTERCON 2026<br>Trujillo, Perú</dd>
+                <dt>marca de trabajo</dt>
+                <dd><b>Nexlayer</b><br>en constitución</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="job">
+            <div class="when">2024 — hoy</div>
+            <div>
+              <h3>Automatización, software e infraestructura</h3>
+              <span class="where">independiente · Nexlayer</span>
+              <p>Desarrollo de sistemas a medida y responsabilidad completa sobre la operación técnica de las oficinas donde corren: servidores, dominio, respaldos y soporte diario.</p>
+            </div>
+          </article>
+          <article class="job">
+            <div class="when">2025 — 2026</div>
+            <div>
+              <h3>Investigación aplicada en aprendizaje automático</h3>
+              <span class="where">proyecto SENTIR · UPC</span>
+              <p>Diseño, desarrollo y validación de una plataforma de detección temprana para colegios. Piloto de campo con 102 aplicaciones y publicación aceptada en una conferencia IEEE.</p>
+            </div>
+          </article>
+          <article class="job">
+            <div class="when">hasta 2026</div>
+            <div>
+              <h3>Soporte de TI corporativo</h3>
+              <span class="where">sector banca · consultora de TI</span>
+              <p>Atención a usuarios y equipos en un entorno con estándares altos de disponibilidad y control de cambios. De ahí me quedó el criterio sobre ventanas de mantenimiento y niveles de servicio.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="investigacion">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">investigación</span>
+          <h2 class="h2">Lo que publico.</h2>
+          <p class="sub">Procesamiento de lenguaje natural en español, con validación de campo y sistemas que quedan funcionando.</p>
+        </div>
+        <div class="cards">
+          <article class="card rv">
+            <span class="kind">artículo aceptado</span>
+            <h3>Detecting Mental Health Risk Factors in Students with Opinion‑BERT and SVM</h3>
+            <p class="cite">IEEE INTERCON 2026 · Trujillo, Perú · presentación oral</p>
+            <p class="abs">Detección de factores de riesgo a partir de respuestas abiertas de estudiantes, combinando un modelo de lenguaje en español con clasificación supervisada. F1‑macro de 0.9215 sobre el conjunto de evaluación.</p>
+            <ul class="mini"><li>BETO zero‑shot</li><li>SVM</li><li>scikit‑learn</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="kind">sistema en producción</span>
+            <h3>SENTIR — del cuestionario en papel a la plataforma que sigue corriendo</h3>
+            <p class="cite">I.E.P. Colegio Miguel de Cervantes · piloto de 102 aplicaciones</p>
+            <p class="abs">La investigación no se quedó en el paper: el sistema se implementó en el colegio, centraliza la aplicación de cuestionarios y clasifica las respuestas con BETO y SVM. Sigue en uso hoy, con documentación de validación firmada con la institución.</p>
+            <ul class="mini"><li>Vue.js 3</li><li>FastAPI</li><li>PostgreSQL</li><li>Azure</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">servicios</span>
+          <h2 class="h2">En qué te puedo ayudar.</h2>
+          <p class="sub">Puedo tomar un frente solo o los cuatro. Lo normal es empezar por el proceso que más duele.</p>
+        </div>
+        <div class="cards">
+          <article class="card rv">
+            <span class="c-no">01</span>
+            <h3>Automatización de procesos</h3>
+            <p>Cargas masivas, integraciones entre sistemas que no se hablan, clasificación automática de registros, generación de archivos y reportes. Me meto en el formato de datos del sistema que ya usas —aunque sea cerrado— en vez de pedirte que lo cambies.</p>
+            <ul class="mini"><li>cargas por lote</li><li>integraciones</li><li>reportes</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">02</span>
+            <h3>Software a medida</h3>
+            <p>Aplicaciones web y de escritorio para tu proceso exacto: plataformas internas, cargas por lote, cotizadores, paneles de control. Con especificación escrita y aprobada antes de la primera línea de código.</p>
+            <ul class="mini"><li>web</li><li>escritorio</li><li>paneles</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">03</span>
+            <h3>Infraestructura y seguridad</h3>
+            <p>Servidores, virtualización, Active Directory, servidor de archivos, sincronización, VPN, respaldos y monitoreo. Con tiempos de respuesta por prioridad y ventanas de cambio pactadas.</p>
+            <ul class="mini"><li>servidores</li><li>dominio</li><li>respaldos</li><li>soporte mensual</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">04</span>
+            <h3>IA aplicada al negocio</h3>
+            <p>Asistentes con acceso a tus documentos, lectura por OCR y modelos de lenguaje que clasifican texto en español. Siempre con confirmación humana antes de que el sistema toque algo que importa.</p>
+            <ul class="mini"><li>asistentes</li><li>OCR</li><li>clasificación</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="stack">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">stack</span>
+          <h2 class="h2">Con qué construyo.</h2>
+          <p class="sub">Elijo la herramienta por lo que resuelve y por lo que cuesta mantenerla.</p>
+        </div>
+        <div class="cards">
+          <div class="card sg rv">
+            <h3>desarrollo</h3>
+            <ul><li>Python · FastAPI</li><li>Vue.js 3</li><li>Java</li><li>VBA y Excel avanzado</li><li>PowerShell y Bash</li><li>Git · Docker</li></ul>
+          </div>
+          <div class="card sg rv">
+            <h3>datos</h3>
+            <ul><li>PostgreSQL</li><li>ChromaDB</li><li>MySQL / MariaDB</li><li>DBF y archivos planos</li><li>Redis</li></ul>
+          </div>
+          <div class="card sg rv">
+            <h3>infraestructura</h3>
+            <ul><li>Proxmox</li><li>Windows Server · AD</li><li>Linux · Ubuntu</li><li>pfSense · WireGuard</li><li>Wazuh · Samba AD</li><li>Nextcloud · Azure</li></ul>
+          </div>
+          <div class="card sg rv">
+            <h3>ia y automatización</h3>
+            <ul><li>APIs de LLM con tool use</li><li>OCR y visión documental</li><li>BETO y modelos BERT en español</li><li>SVM · scikit‑learn</li><li>n8n</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band contact" id="contacto">
+      <div class="inner">
+        <span class="tag">contacto</span>
+        <h2 class="h2">Cuéntame qué se hace a mano en tu operación.</h2>
+        <p class="sub">Escríbeme con el proceso que más tiempo te consume. Te respondo con una primera lectura de si se puede automatizar, cuánto tomaría y qué haría falta. Sin costo.</p>
+        <div class="cards tres" style="margin-top:32px">
+          <a class="card" href="mailto:renzogutierrez966111@gmail.com">
+            <dt>correo</dt>
+            <div class="val">renzogutierrez966111<br>@gmail.com</div>
+          </a>
+          <a class="card" href="https://wa.me/51966111242" target="_blank" rel="noopener noreferrer">
+            <dt>whatsapp</dt>
+            <div class="val">+51 966 111 242<small>respondo el mismo día</small></div>
+          </a>
+          <div class="card">
+            <dt>dónde</dt>
+            <div class="val">Lima, Perú<small>presencial y remoto</small></div>
+          </div>
+        </div>
+        <div class="colofon">
+          <p>Renzo Gutiérrez · ingeniero de sistemas · Lima, Perú<br>Sitio escrito a mano en HTML y CSS. Sin plantillas.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ventana de demo -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-back" data-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <div>
+        <span class="mh-tag" id="modal-kind"></span>
+        <h3 id="modal-title"></h3>
+      </div>
+      <button class="modal-x" data-close type="button" aria-label="Cerrar demo">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot">
+      <p id="modal-note"></p>
+      <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" hidden>abrir en pestaña nueva ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN DE LAS DEMOS
+   Este es el ÚNICO lugar que tienes que editar para conectar una demo.
+
+   tipo: "video"   → src = archivo .mp4 junto al HTML (o una URL)
+         "sitio"   → src = URL de la app desplegada (Vercel, Render, etc.)
+         "fotos"   → src = lista de imágenes con su descripción
+         ""        → aún sin demo: muestra un aviso ordenado
+
+   Ejemplos ya escritos abajo, comentados. Descomenta y pon tus datos.
+   ===================================================================== */
+var DEMOS = {
+
+  /* 01 — plataforma de cuestionarios (Sami). YA CONECTADA. */
+  "colegio": {
+    titulo:"Plataforma de cuestionarios",
+    tipo:"sitio",
+    src:"https://sami-app-9921877.azurewebsites.net/",
+    nota:"Aplicación en línea. El acceso a la información está protegido por credenciales."
+  },
+
+  /* 02 — importador masivo a CONCAR. Falta el video: graba la pantalla,
+     guarda el MP4 en una carpeta "demos" junto a este archivo y cambia
+     tipo a "video" y src a "demos/importador.mp4". */
+  "importador": {
+    titulo:"Importador masivo a CONCAR",
+    tipo:"",
+    src:"",
+    nota:"Grabación de pantalla con datos de prueba. Sin RUCs ni montos reales."
+  },
+
+  /* 07 — Nexplanilla. Mismo procedimiento que el anterior cuando la tengas. */
+  "planillas-app": {
+    titulo:"Nexplanilla — aplicación de planillas",
+    tipo:"",
+    src:"",
+    nota:"En desarrollo. La demo se publica cuando la primera versión esté estable."
+  }
+};
+
+(function(){
+  /* ---- modo día / noche ---- */
+  var root=document.documentElement;
+  var labels=document.querySelectorAll('.js-theme-label');
+  function paint(mode){
+    if(mode==='dark'){root.setAttribute('data-theme','dark');}else{root.removeAttribute('data-theme');}
+    labels.forEach(function(l){l.textContent=(mode==='dark')?'noche':'día';});
+    try{localStorage.setItem('tema',mode);}catch(e){}
+  }
+  var saved=null;
+  try{saved=localStorage.getItem('tema');}catch(e){}
+  if(!saved){saved=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+  paint(saved);
+  document.querySelectorAll('.js-theme').forEach(function(b){
+    b.addEventListener('click',function(){paint(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  });
+
+  /* ---- ventana de demo ---- */
+  var modal=document.getElementById('modal'),
+      mBody=document.getElementById('modal-body'),
+      mTitle=document.getElementById('modal-title'),
+      mKind=document.getElementById('modal-kind'),
+      mNote=document.getElementById('modal-note'),
+      mLink=document.getElementById('modal-link'),
+      lastFocus=null;
+
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+  function abrir(id){
+    var d=DEMOS[id]; if(!d) return;
+    lastFocus=document.activeElement;
+    mTitle.textContent=d.titulo;
+    mNote.textContent=d.nota||'';
+    mLink.hidden=true;
+    mBody.innerHTML='';
+
+    if(d.tipo==='video' && d.src){
+      mKind.textContent='/ grabación';
+      mBody.innerHTML='<video controls autoplay muted loop playsinline preload="metadata" src="'+esc(d.src)+'"></video>';
+    }else if(d.tipo==='sitio' && d.src){
+      mKind.textContent='/ demo en vivo';
+      mBody.innerHTML='<iframe src="'+esc(d.src)+'" loading="lazy" title="Demo"></iframe>';
+      mLink.href=d.src; mLink.hidden=false;
+    }else if(d.tipo==='fotos' && d.src && d.src.length){
+      mKind.textContent='/ capturas';
+      var h='<div class="shots">';
+      d.src.forEach(function(s){
+        h+='<figure><img src="'+esc(s.img)+'" alt="'+esc(s.pie||'')+'" loading="lazy">'+
+           (s.pie?'<figcaption>'+esc(s.pie)+'</figcaption>':'')+'</figure>';
+      });
+      mBody.innerHTML=h+'</div>';
+    }else{
+      mKind.textContent='/ demo';
+      mBody.innerHTML='<div class="pending"><b>La demo aún no está publicada.</b>'+
+        '<p>Estoy preparando una versión con datos de prueba para poder mostrarla sin exponer información de ningún cliente. Escríbeme y te la enseño en una llamada.</p></div>';
+    }
+
+    modal.hidden=false;
+    document.body.classList.add('locked');
+    modal.querySelector('.modal-x').focus();
+  }
+
+  function cerrar(){
+    var v=mBody.querySelector('video'); if(v){v.pause();}
+    mBody.innerHTML='';
+    modal.hidden=true;
+    document.body.classList.remove('locked');
+    if(lastFocus){lastFocus.focus();}
+  }
+
+  document.querySelectorAll('.js-demo').forEach(function(b){
+    b.addEventListener('click',function(){abrir(b.getAttribute('data-demo'));});
+  });
+  modal.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) cerrar(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !modal.hidden) cerrar(); });
+
+  /* ---- apariciones al hacer scroll ---- */
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)||reduce){
+    els.forEach(function(e){e.classList.add('in')});
+  }else{
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
+    },{rootMargin:'0px 0px -5% 0px',threshold:.04});
+    els.forEach(function(e){io.observe(e)});
+  }
+
+  /* ---- sección activa en el menú lateral ---- */
+  var links=[].slice.call(document.querySelectorAll('#railnav a')),map={};
+  links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)map[s.id]=a;});
+  if(!('IntersectionObserver' in window))return;
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('on')});
+        if(map[e.target.id])map[e.target.id].classList.add('on');
+      }
+    });
+  },{rootMargin:'-15% 0px -70% 0px',threshold:0});
+  Object.keys(map).forEach(function(id){spy.observe(document.getElementById(id))});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# original sin comprimir de la demo: se conserva en local, no se publica
+demos/importador-original.mp4
+
+# basura del sistema
+Thumbs.db
+desktop.ini
+.DS_Store

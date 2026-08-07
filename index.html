@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renzo Gutiérrez — ingeniero de sistemas</title>
+<meta name="description" content="Renzo Gutiérrez, ingeniero de sistemas en Lima. Automatizo procesos, construyo software a medida y administro infraestructura. Experiencia en finanzas, cobranza, transporte, catering, contabilidad, inmobiliaria, educación y tecnología.">
+<meta name="author" content="Renzo Gutiérrez">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16181C" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23191B1F'/%3E%3Ctext x='16' y='23' font-family='Helvetica,Arial,sans-serif' font-size='19' font-weight='700' fill='%234FC8F2' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/estilos.css">
+<noscript><link rel="stylesheet" href="css/sin-js.css"></noscript>
+
+<!-- va aquí y sin defer: tiene que decidir el tema antes del primer pintado -->
+<script src="js/tema.js"></script>
+<script src="js/demos.js" defer></script>
+<script src="js/sitio.js" defer></script>
+</head>
+<body>
+
+<!-- ================= barra superior (pantallas angostas) ================= -->
+<div class="topbar">
+  <div class="tb-in">
+    <h1 class="tb-name"><a href="#inicio">Renzo Gutiérrez</a></h1>
+    <button class="themetog js-theme" type="button" aria-label="Cambiar entre modo día y noche" aria-pressed="false">
+      <svg class="i-sun" width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg class="i-moon" width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <span class="js-theme-label">día</span>
+    </button>
+    <nav class="tb-links" aria-label="Secciones">
+      <a href="#rubros">rubros</a>
+      <a href="#ahora">ahora</a>
+      <a href="#proyectos">proyectos</a>
+      <a href="#sobre-mi">sobre mí</a>
+      <a href="#investigacion">investigación</a>
+      <a href="#servicios">servicios</a>
+      <a href="#stack">stack</a>
+      <a href="#contacto">contacto</a>
+    </nav>
+  </div>
+</div>
+
+<div class="shell">
+
+  <!-- ================= barra lateral (escritorio) ================= -->
+  <aside class="rail">
+    <div class="rail-top">
+      <span class="rail-kicker">sitio personal</span>
+      <button class="themetog js-theme" type="button" aria-label="Cambiar entre modo día y noche" aria-pressed="false">
+        <svg class="i-sun" width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5 4.1 4.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg class="i-moon" width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <span class="js-theme-label">día</span>
+      </button>
+    </div>
+
+    <div class="wordmark">
+      <h1>Renzo<br>Gutiérrez</h1>
+      <p class="role">ingeniero de sistemas<br>Lima, Perú</p>
+      <p class="avail"><span class="pulse" aria-hidden="true"></span> disponible para proyectos</p>
+    </div>
+
+    <nav class="railnav" id="railnav" aria-label="Secciones">
+      <a href="#inicio">inicio</a>
+      <a href="#rubros">rubros</a>
+      <a href="#ahora">ahora</a>
+      <a href="#proyectos">proyectos</a>
+      <a href="#sobre-mi">sobre mí</a>
+      <a href="#investigacion">investigación</a>
+      <a href="#servicios">servicios</a>
+      <a href="#stack">stack</a>
+      <a href="#contacto">contacto</a>
+    </nav>
+
+    <div class="focus">
+      <h2>en qué trabajo</h2>
+      <ul>
+        <li>automatización</li>
+        <li>software a medida</li>
+        <li>infraestructura</li>
+        <li>IA aplicada</li>
+      </ul>
+    </div>
+
+    <div class="railfoot">
+      <a href="mailto:renzogutierrez966111@gmail.com">correo</a>
+      <a href="https://wa.me/51966111242" target="_blank" rel="noopener noreferrer">whatsapp</a>
+      <small>© 2026 · escrito a mano<br>en HTML y CSS</small>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ================= portada ================= -->
+    <section class="intro" id="inicio">
+      <div class="inner">
+        <span class="tag">hola</span>
+        <h2>Automatizo el trabajo repetitivo que hoy alguien hace <b>a mano</b>.</h2>
+        <p class="lead">Soy Renzo. Construyo software que saca el trabajo manual de en medio: importadores, integraciones, aplicaciones a medida y modelos que leen y clasifican información. También administro la infraestructura donde todo eso corre.</p>
+        <p class="lead">Mi ventaja no es dominar el rubro mejor que quien trabaja en él: es entender cómo está armado por debajo el software que usa todos los días, y atacar por ahí.</p>
+        <div class="cta">
+          <a class="btn" href="#proyectos">ver lo que he construido</a>
+          <a class="lnk" href="#contacto">escribirme →</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>9</b><span>sistemas construidos y en uso</span></div>
+          <div class="stat"><b>8</b><span>rubros distintos donde he trabajado</span></div>
+          <div class="stat"><b>3,000</b><span>documentos procesados en ~5 min</span></div>
+          <div class="stat"><b>0.9215</b><span>F1‑macro del modelo publicado</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= rubros ================= -->
+    <section class="band" id="rubros">
+      <div class="inner">
+        <span class="tag">rubros</span>
+        <h2 class="h2">El proceso cambia de nombre según el rubro. El cuello de botella casi nunca cambia.</h2>
+        <p class="sub">He trabajado dentro de operaciones muy distintas, y en todas encontré lo mismo: gente copiando datos de un sistema a otro. Eso es lo que resuelvo.</p>
+        <div class="chips">
+          <span>finanzas</span><span>cobranza</span><span>transporte</span><span>catering</span>
+          <span>contabilidad</span><span>inmobiliaria</span><span>desarrollo y tecnología</span><span>educación</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ahora ================= -->
+    <section class="now" id="ahora">
+      <div class="inner">
+        <span class="tag">ahora</span>
+        <h2 class="h2">En qué estoy metido este mes.</h2>
+        <div class="now-list">
+          <div class="now-item"><i aria-hidden="true">→</i><p>Migrando un sistema de <b>planillas</b> de Excel a una aplicación propia en Python, con la especificación escrita antes del código.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Probando <b>lectura por OCR</b> de documentos escaneados para conciliarlos contra un registro externo sin digitar nada.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Dando soporte a la plataforma de cuestionarios que corre hoy en el <b>colegio Miguel de Cervantes</b>.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Presentando mi artículo en <b>IEEE INTERCON 2026</b>, en Trujillo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= proyectos ================= -->
+    <section id="proyectos">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">proyectos</span>
+          <h2 class="h2">Nueve cosas que construí y hoy alguien usa.</h2>
+          <p class="sub">Lo escribo como un cambio: qué había antes, qué hay ahora. Los que tienen demo se pueden ver en marcha.</p>
+        </div>
+
+        <div class="works">
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">01</span><h3>Plataforma de cuestionarios con modelos de PNL</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">I.E.P. Colegio Miguel de Cervantes · educación · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Los cuestionarios se aplicaban en papel y cada respuesta abierta se leía e interpretaba a mano, sin forma de comparar entre grupos ni de detectar señales a tiempo.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Una plataforma que centraliza la aplicación de cuestionarios y clasifica automáticamente las respuestas con BETO y SVM, dos modelos de procesamiento de lenguaje natural en español. Instalada en el colegio y funcionando en la actualidad.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Vue.js 3</li><li>FastAPI</li><li>BETO</li><li>SVM</li><li>PostgreSQL</li><li>Azure</li></ul>
+              <button class="demo-btn js-demo" data-demo="colegio" type="button" aria-haspopup="dialog">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2.5 1.2 10 6l-7.5 4.8V1.2Z"/></svg> ver demo
+              </button>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">02</span><h3>Importador masivo de documentos a un sistema cerrado</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Cada mes llegaban cientos de comprobantes en físico y el equipo los digitaba uno por uno, contra un plazo legal que no se mueve.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Carga por lote y por empresa: hasta 3,000 documentos en unos cinco minutos. El equipo pasó de digitar a revisar.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Python</li><li>VBA</li><li>DBF</li><li>Excel</li><li>escaneo ADF</li></ul>
+              <button class="demo-btn js-demo" data-demo="importador" type="button" aria-haspopup="dialog">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2.5 1.2 10 6l-7.5 4.8V1.2Z"/></svg> ver demo
+              </button>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">03</span><h3>Asistente de IA con acceso a documentos internos</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Información dispersa entre correos, carpetas y sistemas; las mismas consultas resueltas a mano una y otra vez.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Asistente con memoria por usuario, ingesta automática de correo y confirmación humana obligatoria antes de ejecutar cualquier acción.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>FastAPI</li><li>ChromaDB</li><li>PostgreSQL</li><li>LLM con tool use</li><li>n8n</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">04</span><h3>Infraestructura completa de una oficina</h3><span class="state s-run">en operación</span></div>
+            <p class="w-meta">14 usuarios · servidor propio · 2024—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Archivos compartidos sin control de acceso ni respaldo verificado, PCs administradas una por una y ningún acceso remoto seguro.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Dominio con Active Directory y políticas de grupo, servidor de archivos, sincronización de carpetas personales, VPN propia, virtualización y respaldos verificados.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Proxmox</li><li>Windows Server · AD</li><li>Nextcloud</li><li>WireGuard</li><li>pfSense</li><li>Wazuh</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">05</span><h3>Motor de reglas para clasificación automática de registros</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2024—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>La categoría, la cuenta y el correlativo de cada registro se decidían y escribían a criterio de cada persona, documento por documento.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Clasificación automática con reglas configurables, normalización de identificadores y series de correlativo independientes por tipo de operación.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>VBA</li><li>Excel</li><li>reglas configurables</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">06</span><h3>Sistema de planillas multi‑empresa</h3><span class="state s-live">en producción</span></div>
+            <p class="w-meta">servicios profesionales · 2025—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Armar las declaraciones de planilla a mano, empresa por empresa, con el riesgo de multa que eso arrastra.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Sistema de 14 hojas y 5 módulos que genera los archivos de carga y valida la información antes de declarar.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Excel</li><li>VBA</li><li>validación previa</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">07</span><h3>Aplicación de planillas</h3><span class="state s-wip">en desarrollo</span></div>
+            <p class="w-meta">servicios profesionales · 2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Todo el cálculo vive en un libro de Excel: potente, pero difícil de auditar, versionar y compartir entre varias personas a la vez.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Aplicación propia con la lógica separada de la interfaz, especificación escrita antes del desarrollo y base de datos en lugar de hojas.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Python</li><li>especificación previa</li><li>base de datos</li></ul>
+              <button class="demo-btn js-demo" data-demo="planillas-app" type="button" aria-haspopup="dialog">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2.5 1.2 10 6l-7.5 4.8V1.2Z"/></svg> ver demo
+              </button>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">08</span><h3>Conciliación de documentos escaneados por OCR</h3><span class="state s-wip">en desarrollo</span></div>
+            <p class="w-meta">servicios profesionales · 2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Comparar a ojo cientos de documentos en papel contra lo que ya figura en un registro externo, para recién ahí detectar diferencias.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Escaneo por lote y lectura por OCR con código de anclaje: lo que el modelo no lee con seguridad sale marcado como no reconocido, en vez de colarse silencioso.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>OCR y visión</li><li>API externa</li><li>Python</li><li>autohospedaje</li></ul>
+            </div>
+          </article>
+
+          <article class="work rv">
+            <div class="w-line"><span class="w-no">09</span><h3>Utilitarios de escritorio para soporte y acceso a red</h3><span class="state s-live">desplegado</span></div>
+            <p class="w-meta">14 equipos · 2024—2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Cada reinstalación o cambio de equipo obligaba a reconectar unidades de red a mano y a repetir la misma rutina de limpieza y diagnóstico en cada PC.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Aplicación de escritorio que conecta al usuario con sus unidades del servidor, más un juego de utilitarios de diagnóstico y limpieza que corren en minutos.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Java</li><li>PowerShell</li><li>Windows</li><li>SMB</li></ul>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= sobre mí ================= -->
+    <section id="sobre-mi">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">sobre mí</span>
+          <h2 class="h2">Cómo llegué acá.</h2>
+        </div>
+
+        <div class="about-grid about">
+          <div>
+            <p>Estudié ingeniería de sistemas en la UPC. Antes de trabajar por mi cuenta hice soporte de TI corporativo en el sector banca, y ahí aprendí algo que no te enseñan en clase: <strong>la diferencia entre un sistema que funciona y uno que la gente realmente usa.</strong></p>
+            <p>He trabajado dentro de operaciones de <strong>finanzas, cobranza, transporte, catering, contabilidad, inmobiliaria, educación y tecnología.</strong> Esa variedad me dio el ojo para reconocer rápido dónde está el cuello de botella, aunque el negocio me sea nuevo.</p>
+            <p>Trabajo en la intersección de tres cosas que rara vez coinciden en la misma persona: <strong>infraestructura, desarrollo y procesos de negocio.</strong> Puedo levantar un dominio con Active Directory, escribir el importador que ataca directamente el formato de datos de un sistema cerrado, y sentarme después con quien lo va a usar para ver si le sirve.</p>
+            <p>En paralelo hago investigación aplicada en aprendizaje automático. Esa disciplina se me pegó para el trabajo comercial: validar antes de construir, medir lo que se afirma, escribir la especificación antes del código. Para los encargos de infraestructura y mantenimiento continuo trabajo bajo el nombre <strong>Nexlayer</strong>.</p>
+          </div>
+
+          <div class="aside-col">
+
+            <!-- ===============================================================
+                 AQUÍ VA LA FOTO. Cuando la tengas, descomenta este bloque y
+                 deja el archivo junto al HTML. Recorte vertical, proporción 4:5.
+
+            <figure class="photo">
+              <div class="frame"><img src="foto.jpg" alt="Renzo Gutiérrez"></div>
+              <figcaption>Renzo Gutiérrez — Lima, 2026</figcaption>
+            </figure>
+
+            =============================================================== -->
+
+            <div class="ficha">
+              <h3>ficha rápida</h3>
+              <dl>
+                <dt>base</dt>
+                <dd><b>Lima, Perú</b><br>presencial y remoto</dd>
+                <dt>formación</dt>
+                <dd>Ingeniería de Sistemas<br>Universidad Peruana de Ciencias Aplicadas</dd>
+                <dt>enfoque</dt>
+                <dd>Automatización, software a medida, infraestructura e IA aplicada</dd>
+                <dt>publicación</dt>
+                <dd>IEEE INTERCON 2026<br>Trujillo, Perú</dd>
+                <dt>marca de trabajo</dt>
+                <dd><b>Nexlayer</b><br>en constitución</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="job">
+            <div class="when">2024 — hoy</div>
+            <div>
+              <h3>Automatización, software e infraestructura</h3>
+              <span class="where">independiente · Nexlayer</span>
+              <p>Desarrollo de sistemas a medida y responsabilidad completa sobre la operación técnica de las oficinas donde corren: servidores, dominio, respaldos y soporte diario.</p>
+            </div>
+          </article>
+          <article class="job">
+            <div class="when">2025 — 2026</div>
+            <div>
+              <h3>Investigación aplicada en aprendizaje automático</h3>
+              <span class="where">proyecto SENTIR · UPC</span>
+              <p>Diseño, desarrollo y validación de una plataforma de detección temprana para colegios. Piloto de campo con 102 aplicaciones y publicación aceptada en una conferencia IEEE.</p>
+            </div>
+          </article>
+          <article class="job">
+            <div class="when">hasta 2026</div>
+            <div>
+              <h3>Soporte de TI corporativo</h3>
+              <span class="where">sector banca · consultora de TI</span>
+              <p>Atención a usuarios y equipos en un entorno con estándares altos de disponibilidad y control de cambios. De ahí me quedó el criterio sobre ventanas de mantenimiento y niveles de servicio.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= investigación ================= -->
+    <section class="band" id="investigacion">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">investigación</span>
+          <h2 class="h2">Lo que publico.</h2>
+          <p class="sub">Procesamiento de lenguaje natural en español, con validación de campo y sistemas que quedan funcionando.</p>
+        </div>
+        <div class="cards">
+          <article class="card rv">
+            <span class="kind">artículo aceptado</span>
+            <h3>Detecting Mental Health Risk Factors in Students with Opinion‑BERT and SVM</h3>
+            <p class="cite">IEEE INTERCON 2026 · Trujillo, Perú · presentación oral</p>
+            <p class="abs">Detección de factores de riesgo a partir de respuestas abiertas de estudiantes, combinando un modelo de lenguaje en español con clasificación supervisada. F1‑macro de 0.9215 sobre el conjunto de evaluación.</p>
+            <ul class="mini"><li>BETO zero‑shot</li><li>SVM</li><li>scikit‑learn</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="kind">sistema en producción</span>
+            <h3>SENTIR — del cuestionario en papel a la plataforma que sigue corriendo</h3>
+            <p class="cite">I.E.P. Colegio Miguel de Cervantes · piloto de 102 aplicaciones</p>
+            <p class="abs">La investigación no se quedó en el paper: el sistema se implementó en el colegio, centraliza la aplicación de cuestionarios y clasifica las respuestas con BETO y SVM. Sigue en uso hoy, con documentación de validación firmada con la institución.</p>
+            <ul class="mini"><li>Vue.js 3</li><li>FastAPI</li><li>PostgreSQL</li><li>Azure</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= servicios ================= -->
+    <section id="servicios">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">servicios</span>
+          <h2 class="h2">En qué te puedo ayudar.</h2>
+          <p class="sub">Puedo tomar un frente solo o los cuatro. Lo normal es empezar por el proceso que más duele.</p>
+        </div>
+        <div class="cards">
+          <article class="card rv">
+            <span class="c-no">01</span>
+            <h3>Automatización de procesos</h3>
+            <p>Cargas masivas, integraciones entre sistemas que no se hablan, clasificación automática de registros, generación de archivos y reportes. Me meto en el formato de datos del sistema que ya usas —aunque sea cerrado— en vez de pedirte que lo cambies.</p>
+            <ul class="mini"><li>cargas por lote</li><li>integraciones</li><li>reportes</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">02</span>
+            <h3>Software a medida</h3>
+            <p>Aplicaciones web y de escritorio para tu proceso exacto: plataformas internas, cargas por lote, cotizadores, paneles de control. Con especificación escrita y aprobada antes de la primera línea de código.</p>
+            <ul class="mini"><li>web</li><li>escritorio</li><li>paneles</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">03</span>
+            <h3>Infraestructura y seguridad</h3>
+            <p>Servidores, virtualización, Active Directory, servidor de archivos, sincronización, VPN, respaldos y monitoreo. Con tiempos de respuesta por prioridad y ventanas de cambio pactadas.</p>
+            <ul class="mini"><li>servidores</li><li>dominio</li><li>respaldos</li><li>soporte mensual</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">04</span>
+            <h3>IA aplicada al negocio</h3>
+            <p>Asistentes con acceso a tus documentos, lectura por OCR y modelos de lenguaje que clasifican texto en español. Siempre con confirmación humana antes de que el sistema toque algo que importa.</p>
+            <ul class="mini"><li>asistentes</li><li>OCR</li><li>clasificación</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= stack ================= -->
+    <section class="band" id="stack">
+      <div class="inner">
+        <div class="sec-top">
+          <span class="tag">stack</span>
+          <h2 class="h2">Con qué construyo.</h2>
+          <p class="sub">Elijo la herramienta por lo que resuelve y por lo que cuesta mantenerla.</p>
+        </div>
+        <div class="cards">
+          <div class="card sg rv">
+            <h3>desarrollo</h3>
+            <ul><li>Python · FastAPI</li><li>Vue.js 3</li><li>Java</li><li>VBA y Excel avanzado</li><li>PowerShell y Bash</li><li>Git · Docker</li></ul>
+          </div>
+          <div class="card sg rv">
+            <h3>datos</h3>
+            <ul><li>PostgreSQL</li><li>ChromaDB</li><li>MySQL / MariaDB</li><li>DBF y archivos planos</li><li>Redis</li></ul>
+          </div>
+          <div class="card sg rv">
+            <h3>infraestructura</h3>
+            <ul><li>Proxmox</li><li>Windows Server · AD</li><li>Linux · Ubuntu</li><li>pfSense · WireGuard</li><li>Wazuh · Samba AD</li><li>Nextcloud · Azure</li></ul>
+          </div>
+          <div class="card sg rv">
+            <h3>ia y automatización</h3>
+            <ul><li>APIs de LLM con tool use</li><li>OCR y visión documental</li><li>BETO y modelos BERT en español</li><li>SVM · scikit‑learn</li><li>n8n</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= contacto ================= -->
+    <section class="band contact" id="contacto">
+      <div class="inner">
+        <span class="tag">contacto</span>
+        <h2 class="h2">Cuéntame qué se hace a mano en tu operación.</h2>
+        <p class="sub">Escríbeme con el proceso que más tiempo te consume. Te respondo con una primera lectura de si se puede automatizar, cuánto tomaría y qué haría falta. Sin costo.</p>
+        <div class="cards tres" style="margin-top:32px">
+          <a class="card" href="mailto:renzogutierrez966111@gmail.com">
+            <span class="k">correo</span>
+            <span class="val">renzogutierrez966111<br>@gmail.com</span>
+          </a>
+          <a class="card" href="https://wa.me/51966111242" target="_blank" rel="noopener noreferrer">
+            <span class="k">whatsapp</span>
+            <span class="val">+51 966 111 242<small>respondo el mismo día</small></span>
+          </a>
+          <div class="card">
+            <span class="k">dónde</span>
+            <span class="val">Lima, Perú<small>presencial y remoto</small></span>
+          </div>
+        </div>
+        <div class="colofon">
+          <p>Renzo Gutiérrez · ingeniero de sistemas · Lima, Perú<br>Sitio escrito a mano en HTML y CSS. Sin plantillas.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ================= ventana de demo ================= -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-back" data-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <div>
+        <span class="mh-tag" id="modal-kind"></span>
+        <h3 id="modal-title"></h3>
+      </div>
+      <button class="modal-x" data-close type="button" aria-label="Cerrar demo">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot">
+      <p id="modal-note"></p>
+      <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" hidden>abrir en pestaña nueva ↗</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
