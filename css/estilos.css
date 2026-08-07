@@ -307,19 +307,49 @@ a.card{text-decoration:none;display:block}
 .modal-head{display:flex;align-items:flex-start;gap:16px;padding:20px 22px 16px;border-bottom:1px solid var(--hair)}
 .modal-head .mh-tag{font-family:var(--mono);font-size:9.5px;color:var(--dia);display:block;margin-bottom:7px}
 .modal-head h3{font-size:1.14rem;letter-spacing:-.028em}
+.modal-acts{margin-left:auto;display:flex;align-items:center;gap:8px;flex:none}
 .modal-x{
-  margin-left:auto;background:transparent;border:1px solid var(--hair);color:var(--text-3);
+  background:transparent;border:1px solid var(--hair);color:var(--text-3);
   width:32px;height:32px;flex:none;cursor:pointer;font-size:15px;line-height:1;transition:.2s;
 }
 .modal-x:hover{border-color:var(--dia);color:var(--dia)}
+.modal-full{
+  background:transparent;border:1px solid var(--hair);color:var(--text-3);height:32px;
+  padding:0 11px;flex:none;cursor:pointer;font-family:var(--mono);font-size:10px;line-height:1;
+  transition:.2s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.modal-full:hover{border-color:var(--dia);color:var(--dia)}
+.modal-full[hidden]{display:none}
 .modal-body{padding:22px;overflow:auto;background:var(--bg-2)}
 .modal-body video,.modal-body iframe{width:100%;border:1px solid var(--hair);background:#000;display:block}
 .modal-body video{aspect-ratio:16/9}
 .modal-body iframe{height:min(62vh,620px)}
 .shots{display:grid;gap:14px}
 .shots figure{margin:0}
-.shots img{width:100%;border:1px solid var(--hair)}
+.shots img{width:100%;border:1px solid var(--hair);cursor:zoom-in}
 .shots figcaption{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:8px}
+
+/* ---- pantalla completa ----
+   Las reglas con :fullscreen y con :-webkit-full-screen van separadas a
+   propósito: si un navegador no entiende uno de los dos selectores
+   descarta el bloque entero, y juntas se anularían entre sí. */
+.modal-body video:fullscreen{aspect-ratio:auto;width:100%;height:100%;border:0}
+.modal-body video:-webkit-full-screen{aspect-ratio:auto;width:100%;height:100%;border:0}
+.shots:fullscreen{background:#000;padding:24px;overflow:auto;align-content:start}
+.shots:-webkit-full-screen{background:#000;padding:24px;overflow:auto}
+.shots:fullscreen figure{max-width:1400px;margin:0 auto}
+.shots img:fullscreen{width:auto;height:100%;object-fit:contain;border:0;cursor:zoom-out}
+.shots img:-webkit-full-screen{width:auto;height:100%;object-fit:contain;border:0}
+
+/* respaldo para navegadores sin pantalla completa por elemento (iPhone) */
+body.fs-activo{overflow:hidden}
+.fs-fallback{
+  position:fixed!important;inset:0!important;z-index:300!important;
+  width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+  margin:0!important;border:0!important;background:#000!important;
+  aspect-ratio:auto!important;object-fit:contain!important;cursor:zoom-out;
+}
+.shots.fs-fallback{padding:20px!important;overflow:auto;display:block}
 .pending{
   border:1px dashed var(--hair-2);padding:clamp(30px,6vw,56px) 26px;text-align:center;background:var(--bg);
 }

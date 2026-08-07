@@ -59,7 +59,51 @@
       mKind  = document.getElementById('modal-kind'),
       mNote  = document.getElementById('modal-note'),
       mLink  = document.getElementById('modal-link'),
+      mFull  = document.getElementById('modal-full'),
       ultimoFoco = null;
+
+  /* ---- pantalla completa ----
+     Se pide la API nativa; si el navegador no la ofrece para elementos
+     sueltos (el Safari de iPhone sólo la da en videos) se recurre a un
+     respaldo con CSS que cubre la ventana. */
+  var fsRespaldo = null;
+
+  function ampliar(el) {
+    if (!el) { return; }
+    var pedir = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (pedir) {
+      try {
+        var r = pedir.call(el);
+        if (r && r['catch']) { r['catch'](function () { respaldoEntrar(el); }); }
+        return;
+      } catch (e) {}
+    }
+    if (el.webkitEnterFullscreen) { try { el.webkitEnterFullscreen(); return; } catch (e) {} }
+    respaldoEntrar(el);
+  }
+
+  function respaldoEntrar(el) {
+    respaldoSalir();
+    fsRespaldo = el;
+    el.classList.add('fs-fallback');
+    document.body.classList.add('fs-activo');
+  }
+  function respaldoSalir() {
+    if (!fsRespaldo) { return; }
+    fsRespaldo.classList.remove('fs-fallback');
+    document.body.classList.remove('fs-activo');
+    fsRespaldo = null;
+  }
+  function ampliado() {
+    return !!(document.fullscreenElement || document.webkitFullscreenElement || fsRespaldo);
+  }
+  function reducir() {
+    if (fsRespaldo) { respaldoSalir(); return; }
+    var salir = document.exitFullscreen || document.webkitExitFullscreen;
+    if (salir && (document.fullscreenElement || document.webkitFullscreenElement)) {
+      try { salir.call(document); } catch (e) {}
+    }
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -88,10 +132,12 @@
     mNote.textContent  = d.nota || '';
     mLink.hidden = true;
     mLink.removeAttribute('href');
+    mFull.hidden = true;
     mBody.innerHTML = '';
 
     if (d.tipo === 'video' && d.src) {
       mKind.textContent = '/ grabación';
+      mFull.hidden = false;
       mBody.innerHTML = '<video controls autoplay muted loop playsinline preload="metadata" src="' + esc(d.src) + '"></video>';
 
     } else if (d.tipo === 'sitio' && d.src) {
@@ -103,6 +149,7 @@
 
     } else if (d.tipo === 'fotos' && d.src && d.src.length) {
       mKind.textContent = '/ capturas';
+      mFull.hidden = false;
       var h = '<div class="shots">';
       d.src.forEach(function (s) {
         h += '<figure><img src="' + esc(s.img) + '" alt="' + esc(s.pie || '') + '" loading="lazy">' +
@@ -137,6 +184,7 @@
   }
 
   function cerrar() {
+    reducir();
     var v = mBody.querySelector('video');
     if (v) { try { v.pause(); } catch (e) {} }
     mBody.innerHTML = '';
@@ -163,9 +211,26 @@
     if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-close')) { cerrar(); }
   });
 
+  /* el botón amplía lo que haya dentro: el video o la galería entera */
+  mFull.addEventListener('click', function () {
+    if (ampliado()) { reducir(); return; }
+    ampliar(mBody.querySelector('video') || mBody.querySelector('.shots'));
+  });
+
+  /* y cada captura se puede ampliar por separado con un clic */
+  mBody.addEventListener('click', function (e) {
+    var t = e.target;
+    if (fsRespaldo && (t === fsRespaldo || fsRespaldo.contains(t))) { respaldoSalir(); return; }
+    if (t && t.tagName === 'IMG' && t.closest && t.closest('.shots')) { ampliar(t); }
+  });
+
   document.addEventListener('keydown', function (e) {
     if (modal.hidden) { return; }
-    if (e.key === 'Escape') { cerrar(); return; }
+    /* estando ampliado, Escape sólo reduce; la ventana se queda abierta */
+    if (e.key === 'Escape') {
+      if (ampliado()) { reducir(); } else { cerrar(); }
+      return;
+    }
     if (e.key !== 'Tab') { return; }
 
     var f = focuseables();
