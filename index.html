@@ -110,7 +110,7 @@
           <a class="lnk" href="#contacto">escribirme →</a>
         </div>
         <div class="stats">
-          <div class="stat"><b>9</b><span>sistemas construidos y en uso</span></div>
+          <div class="stat"><b>11</b><span>sistemas construidos a la fecha</span></div>
           <div class="stat"><b>8</b><span>rubros distintos donde he trabajado</span></div>
           <div class="stat"><b>3,000</b><span>documentos procesados en ~5 min</span></div>
           <div class="stat"><b>0.9215</b><span>F1‑macro del modelo publicado</span></div>
@@ -150,8 +150,8 @@
       <div class="inner">
         <div class="sec-top">
           <span class="tag">proyectos</span>
-          <h2 class="h2">Nueve cosas que construí y hoy alguien usa.</h2>
-          <p class="sub">Lo escribo como un cambio: qué había antes, qué hay ahora. Los que tienen demo se pueden ver en marcha.</p>
+          <h2 class="h2">Once sistemas: siete corriendo hoy, cuatro en camino.</h2>
+          <p class="sub">Lo escribo como un cambio: qué había antes, qué hay ahora. Los que tienen demo se pueden ver en marcha. Los que todavía no están en producción van marcados como tales, en ámbar los que ya se están probando.</p>
         </div>
 
         <div class="works">
@@ -270,6 +270,32 @@
             </div>
             <div class="w-foot">
               <ul class="w-stack"><li>Java</li><li>PowerShell</li><li>Windows</li><li>SMB</li></ul>
+            </div>
+          </article>
+
+          <article class="work w-test rv">
+            <div class="w-line"><span class="w-no">10</span><h3>Robot que registra atenciones en un sistema de escritorio</h3><span class="state s-test">en pruebas</span></div>
+            <p class="w-meta">doctor en fisioterapia · salud · 2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>De 14 a 16 registros por turno, idénticos entre sí salvo el número de cuenta: un minuto de clics y desplegables por paciente, más lo que el sistema tarda en guardar.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Se pega la lista de cuentas y un robot maneja la aplicación desde su propia interfaz, con el usuario autorizado y sin tocar la base de datos. Si alguien mueve el mouse o escribe, el proceso se corta en medio segundo, avisa dónde quedó y ofrece retomar sin repetir lo ya cargado.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>Python</li><li>pywinauto</li><li>UI Automation</li><li>ejecutable único</li></ul>
+              <p class="w-nota">Validado contra una réplica del formulario real: encuentra los 13 controles aunque no se conozcan sus nombres internos, y sostiene el registro con la ventana movida, chica o maximizada. Falta la prueba contra el sistema en el hospital.</p>
+            </div>
+          </article>
+
+          <article class="work w-test rv">
+            <div class="w-line"><span class="w-no">11</span><h3>CRM de código abierto con chatbot de precalificación</h3><span class="state s-test">en pruebas</span></div>
+            <p class="w-meta">importadora de maquinaria · Los Olivos · 2026</p>
+            <div class="diff">
+              <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Las consultas entran por WhatsApp a una bandeja compartida y cada asesor decide a ojo cuáles vale la pena seguir. Los contactos y las etiquetas viven dentro de una plataforma cerrada que no exporta el historial.</div></div>
+              <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Plataforma de atención propia, con los contactos y la estructura de etiquetas migrados. Un chatbot pregunta según el tipo de máquina, etiqueta por campaña de origen y asigna al asesor con el resumen de la conversación adjunto. Ningún lead se descarta solo: lo que el sistema no clasifica con confianza queda en una cola de revisión.</div></div>
+            </div>
+            <div class="w-foot">
+              <ul class="w-stack"><li>CRM de código abierto</li><li>WhatsApp</li><li>chatbot</li><li>base de datos propia</li><li>servidor en la nube</li></ul>
+              <p class="w-nota">Aceptación por umbrales medidos, no por impresión: la migración de contactos se da por conforme sobre el 95% de los registros exportados, y el etiquetado y la asignación automática sobre una muestra de 50 conversaciones reales.</p>
             </div>
           </article>
 

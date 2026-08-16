@@ -18,6 +18,7 @@
   --dia:#0B87C9; --dia-lt:#4FC8F2; --dia-soft:#E6F4FB; --dia-glow:rgba(11,135,201,.13);
   --lima:#5F9E12; --lima-lt:#A3D93B; --lima-dk:#4C800C;
   --lima-soft:#F2F8E5; --lima-line:#DCEAC2; --lima-glow:rgba(95,158,18,.14);
+  --test:#A85A06; --test-soft:#FDF3E6; --test-line:#EFD9B8;
   --btn-bg:#191B1F; --btn-fg:#FFFFFF;
   --shadow:0 16px 34px -24px rgba(25,27,31,.55);
   --dsp:'Space Grotesk',system-ui,sans-serif;
@@ -35,6 +36,7 @@ html[data-theme="dark"]{
   --dia:#4FC8F2; --dia-lt:#7BD8F7; --dia-soft:rgba(79,200,242,.13); --dia-glow:rgba(79,200,242,.12);
   --lima:#A3D93B; --lima-lt:#BDE86A; --lima-dk:#BDE86A;
   --lima-soft:rgba(163,217,59,.09); --lima-line:rgba(163,217,59,.22); --lima-glow:rgba(163,217,59,.13);
+  --test:#F0A94A; --test-soft:rgba(240,169,74,.10); --test-line:rgba(240,169,74,.28);
   --btn-bg:#ECEEF1; --btn-fg:#16181C;
   --shadow:0 16px 36px -22px rgba(0,0,0,.85);
 }
@@ -206,6 +208,17 @@ section{padding:clamp(56px,7vw,94px) 0;transition:background .35s ease}
 .work::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:2px;background:linear-gradient(180deg,var(--dia),var(--lima));opacity:0;transition:opacity .22s}
 .work:hover{transform:translateY(-3px);border-color:var(--hair-2);box-shadow:var(--shadow)}
 .work:hover::before{opacity:1}
+/* en pruebas: el recuadro entero va en ambar, con la barra lateral siempre
+   visible, para que se distinga de los que ya estan en produccion */
+.work.w-test{border-color:var(--test-line);background:var(--test-soft)}
+.work.w-test::before{background:var(--test);opacity:1}
+.work.w-test .w-no{color:var(--test)}
+.work.w-test .diff{border-color:var(--test-line)}
+.work.w-test .d:first-child{border-bottom-color:var(--test-line)}
+.work.w-test .d .mk{border-right-color:var(--test-line)}
+.work.w-test .d-out{background:transparent}
+.work.w-test .w-nota{border-top-color:var(--test-line)}
+.work.w-test:hover{border-color:var(--test)}
 .w-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
 .w-no{font-family:var(--mono);font-size:11px;color:var(--dia);font-weight:500}
 .work h3{font-size:clamp(1.14rem,1.8vw,1.36rem);letter-spacing:-.03em}
@@ -214,6 +227,7 @@ section{padding:clamp(56px,7vw,94px) 0;transition:background .35s ease}
 html[data-theme="dark"] .s-live{color:#16181C}
 .s-wip{color:var(--dia);background:var(--dia-soft);border:1px solid var(--dia-soft)}
 .s-run{color:var(--text-2);background:var(--bg-3)}
+.s-test{color:var(--test);background:var(--test-soft);border:1px solid var(--test-line)}
 .w-meta{font-family:var(--mono);font-size:10px;color:var(--text-3);margin-top:8px}
 .diff{margin-top:18px;border:1px solid var(--hair);font-size:.95rem;overflow:hidden}
 .d{display:grid;grid-template-columns:32px 1fr;align-items:stretch}
@@ -231,6 +245,8 @@ html[data-theme="dark"] .s-live{color:#16181C}
 .w-stack{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:5px 16px;font-family:var(--mono);font-size:10.5px;color:var(--text-3);flex:1 1 auto}
 .w-stack li{position:relative}
 .w-stack li:not(:last-child)::after{content:"·";position:absolute;right:-10px;opacity:.6}
+/* nota al pie de una ficha: que se sepa hasta donde llega lo comprobado */
+.w-nota{flex:1 0 100%;font-family:var(--mono);font-size:10.5px;line-height:1.65;color:var(--text-3);margin:2px 0 0;padding-top:12px;border-top:1px dashed var(--hair)}
 
 /* botón de demo */
 .demo-btn{
