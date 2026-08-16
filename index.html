@@ -139,8 +139,8 @@
         <div class="now-list">
           <div class="now-item"><i aria-hidden="true">→</i><p>Migrando un sistema de <b>planillas</b> de Excel a una aplicación propia en Python, con la especificación escrita antes del código.</p></div>
           <div class="now-item"><i aria-hidden="true">→</i><p>Probando <b>lectura por OCR</b> de documentos escaneados para conciliarlos contra un registro externo sin digitar nada.</p></div>
-          <div class="now-item"><i aria-hidden="true">→</i><p>Dando soporte a la plataforma de cuestionarios que corre hoy en el <b>colegio Miguel de Cervantes</b>.</p></div>
-          <div class="now-item"><i aria-hidden="true">→</i><p>Presentando mi artículo en <b>IEEE INTERCON 2026</b>, en Trujillo.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Automatizando con <b>RPA</b> el registro de atenciones de un doctor en fisioterapia: el robot maneja la aplicación de escritorio desde su propia interfaz, con el usuario autorizado y sin tocar la base de datos. Quince registros idénticos por turno se vuelven una lista de cuentas.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Construyendo un sistema de atención sobre un <b>CRM de código abierto</b> para una importadora de maquinaria de Los Olivos: migración de contactos y etiquetas desde la plataforma actual, y un <b>chatbot</b> que precalifica por WhatsApp, etiqueta y asigna al asesor con el resumen de la conversación.</p></div>
         </div>
       </div>
     </section>
@@ -158,7 +158,7 @@
 
           <article class="work rv">
             <div class="w-line"><span class="w-no">01</span><h3>Plataforma de cuestionarios con modelos de PNL</h3><span class="state s-live">en producción</span></div>
-            <p class="w-meta">I.E.P. Colegio Miguel de Cervantes · educación · 2025—2026</p>
+            <p class="w-meta">colegio privado de Puente Piedra · educación · 2025—2026</p>
             <div class="diff">
               <div class="d d-out"><div class="mk" aria-hidden="true">−</div><div class="tx"><em>antes</em>Los cuestionarios se aplicaban en papel y cada respuesta abierta se leía e interpretaba a mano, sin forma de comparar entre grupos ni de detectar señales a tiempo.</div></div>
               <div class="d d-in"><div class="mk" aria-hidden="true">+</div><div class="tx"><em>ahora</em>Una plataforma que centraliza la aplicación de cuestionarios y clasifica automáticamente las respuestas con BETO y SVM, dos modelos de procesamiento de lenguaje natural en español. Instalada en el colegio y funcionando en la actualidad.</div></div>
@@ -294,18 +294,6 @@
           </div>
 
           <div class="aside-col">
-
-            <!-- ===============================================================
-                 AQUÍ VA LA FOTO. Cuando la tengas, descomenta este bloque y
-                 deja el archivo junto al HTML. Recorte vertical, proporción 4:5.
-
-            <figure class="photo">
-              <div class="frame"><img src="foto.jpg" alt="Renzo Gutiérrez"></div>
-              <figcaption>Renzo Gutiérrez — Lima, 2026</figcaption>
-            </figure>
-
-            =============================================================== -->
-
             <div class="ficha">
               <h3>ficha rápida</h3>
               <dl>
@@ -356,10 +344,21 @@
     <!-- ================= investigación ================= -->
     <section class="band" id="investigacion">
       <div class="inner">
-        <div class="sec-top">
-          <span class="tag">investigación</span>
-          <h2 class="h2">Lo que publico.</h2>
-          <p class="sub">Procesamiento de lenguaje natural en español, con validación de campo y sistemas que quedan funcionando.</p>
+        <div class="sec-top pub-lead">
+          <div>
+            <span class="tag">investigación</span>
+            <h2 class="h2">Lo que publico.</h2>
+            <p class="sub">Procesamiento de lenguaje natural en español, con validación de campo y sistemas que quedan funcionando.</p>
+            <p class="sub pub-nota">El artículo de abajo se presentó en el auditorio de la UPAO, en Trujillo. Ahí es donde termina lo que se escribe: alguien preguntando si el número se sostiene.</p>
+          </div>
+
+          <figure class="photo photo-pub">
+            <div class="frame">
+              <img src="foto.jpg" width="820" height="1025" loading="lazy" decoding="async"
+                   alt="Renzo Gutiérrez en el auditorio de la UPAO durante la IEEE INTERCON 2026">
+            </div>
+            <figcaption>IEEE INTERCON 2026<br>Auditorio de la UPAO, Trujillo</figcaption>
+          </figure>
         </div>
         <div class="cards">
           <article class="card rv">
@@ -372,7 +371,7 @@
           <article class="card rv">
             <span class="kind">sistema en producción</span>
             <h3>SENTIR — del cuestionario en papel a la plataforma que sigue corriendo</h3>
-            <p class="cite">I.E.P. Colegio Miguel de Cervantes · piloto de 102 aplicaciones</p>
+            <p class="cite">colegio privado de Puente Piedra · piloto de 102 aplicaciones</p>
             <p class="abs">La investigación no se quedó en el paper: el sistema se implementó en el colegio, centraliza la aplicación de cuestionarios y clasifica las respuestas con BETO y SVM. Sigue en uso hoy, con documentación de validación firmada con la institución.</p>
             <ul class="mini"><li>Vue.js 3</li><li>FastAPI</li><li>PostgreSQL</li><li>Azure</li></ul>
           </article>

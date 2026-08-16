@@ -93,11 +93,31 @@ La ventana de demo tiene un botón **⤢ ampliar** en las de video y de capturas
 Además, cada captura se amplía por separado con un clic. Estando ampliado,
 `Escape` reduce y deja la ventana abierta; el segundo `Escape` la cierra.
 
-## Cómo poner la foto
+## Cómo cambiar la foto
 
-En `index.html`, sección *sobre mí*, hay un bloque comentado con la etiqueta
-`AQUÍ VA LA FOTO`. Descoméntalo y deja `foto.jpg` junto al `index.html`.
-Recorte vertical, proporción 4:5.
+La foto vive en `foto.jpg`, junto al `index.html`, y acompaña al encabezado de
+*investigación* — «Lo que publico» —, no a *sobre mí*: es del auditorio donde se
+presentó el artículo, así que ahí explica algo en vez de sólo decorar. El marco
+es vertical de proporción **4:5** y recorta con `object-fit:cover`, así que la
+imagen debe venir ya recortada a esa proporción: un plano entero se ve diminuto
+en una columna de 252 px.
+
+Para reemplazarla, deja el original en `foto-original.jpeg` (ignorado por git) y
+genera el recorte:
+
+```sh
+python3 -c "
+from PIL import Image, ImageOps
+im = ImageOps.exif_transpose(Image.open('foto-original.jpeg'))
+im.crop((60,130,880,1155)).convert('RGB').save(
+    'foto.jpg','JPEG',quality=88,optimize=True,progressive=True)"
+```
+
+La caja del recorte es `(izquierda, arriba, derecha, abajo)` en píxeles del
+original; ajústala al encuadre nuevo manteniendo ancho ÷ alto = 0,8. Publicado
+mide 820×1025, más del triple de la columna para que no se vea blando en
+pantallas retina. Si cambias el tamaño, corrige también `width` y `height` en la
+etiqueta `<img>`: sin ellos el texto salta cuando la imagen termina de cargar.
 
 ## Publicar
 

@@ -257,9 +257,9 @@ html[data-theme="dark"] .demo-btn:hover{color:#16181C}
 .ficha dd:last-child{margin-bottom:0}
 .ficha dd b{color:var(--text);font-weight:600}
 .photo{margin:0 0 16px}
-.photo .frame{border:1px solid var(--hair);background:var(--bg-3);aspect-ratio:4/5;overflow:hidden}
-.photo .frame img{width:100%;height:100%;object-fit:cover}
-.photo figcaption{margin-top:12px;font-family:var(--mono);font-size:9.5px;color:var(--text-3)}
+.photo .frame{border:1px solid var(--hair);background:var(--bg-3);aspect-ratio:4/5;overflow:hidden;position:relative}
+.photo .frame img{width:100%;height:100%;object-fit:cover;display:block}
+.photo figcaption{margin-top:12px;font-family:var(--mono);font-size:9.5px;line-height:1.7;color:var(--text-3)}
 @media(max-width:900px){
   .about-grid{grid-template-columns:1fr}
   .aside-col{position:static;margin-top:26px}
@@ -277,6 +277,21 @@ html[data-theme="dark"] .demo-btn:hover{color:#16181C}
 .kind{font-family:var(--mono);font-size:9.5px;color:var(--band);background:var(--lima-lt);padding:3px 9px;display:inline-block;margin-bottom:14px}
 .cite{font-family:var(--mono);font-size:10px;color:var(--band-mute);margin-top:8px}
 .card .abs{margin-top:12px}
+
+/* el retrato acompaña al encabezado de investigación */
+.pub-lead{display:grid;grid-template-columns:1fr 252px;gap:clamp(28px,4vw,54px);align-items:start}
+.pub-nota{margin-top:16px;font-size:.93rem}
+.photo-pub{margin:7px 0 0}   /* baja el marco hasta la altura óptica de la etiqueta */
+.photo-pub .frame::before{
+  content:"";position:absolute;left:0;top:0;width:2px;height:56px;z-index:1;
+  background:linear-gradient(180deg,var(--dia-lt),var(--lima-lt));
+}
+.band .photo .frame{border-color:var(--band-line);background:var(--band-card)}
+.band .photo figcaption{color:var(--band-mute)}
+@media(max-width:900px){
+  .pub-lead{grid-template-columns:1fr}
+  .photo-pub{max-width:296px;margin-top:4px}
+}
 
 /* stack */
 .sg h3{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--dia-lt);margin-bottom:14px;display:inline-flex;align-items:center;gap:7px}

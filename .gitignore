@@ -2,6 +2,11 @@
 # el video sin comprimir y las capturas sin la marca de datos ficticios
 demos/importador-original.mp4
 demos/sin-marca/
+foto-original.jpeg
+
+# documentacion interna de proyectos: contrato firmado con datos personales
+# y bancarios, y bitacora con el nombre del cliente. Nunca se publica.
+project-renzo/
 
 # basura del sistema
 Thumbs.db
