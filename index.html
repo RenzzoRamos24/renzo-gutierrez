@@ -30,12 +30,12 @@
   <div class="nav-in">
     <a class="nav-name" href="#inicio">Renzo Gutiérrez</a>
     <nav class="nav-links" id="menu" aria-label="Secciones">
-      <a href="#rubros">rubros</a>
-      <a href="#ahora">ahora</a>
-      <a href="#proyectos">proyectos</a>
       <a href="#sobre-mi">sobre mí</a>
-      <a href="#investigacion">investigación</a>
+      <a href="#proyectos">proyectos</a>
       <a href="#servicios">servicios</a>
+      <a href="#investigacion">investigación</a>
+      <a href="#ahora">ahora</a>
+      <a href="#rubros">rubros</a>
       <a href="#stack">stack</a>
       <a href="#contacto">contacto</a>
     </nav>
@@ -90,29 +90,73 @@
       </div>
     </section>
 
-    <!-- ================= rubros ================= -->
-    <section class="band" id="rubros">
+    <!-- ================= sobre mí ================= -->
+    <section class="sin-estrellas" id="sobre-mi">
       <div class="inner">
-        <span class="tag">rubros</span>
-        <h2 class="h2">El proceso cambia de nombre según el rubro. El cuello de botella casi nunca cambia.</h2>
-        <p class="sub">He trabajado dentro de operaciones muy distintas, y en todas encontré lo mismo: gente copiando datos de un sistema a otro. Eso es lo que resuelvo.</p>
-        <div class="chips">
-          <span>finanzas</span><span>cobranza</span><span>transporte</span><span>catering</span>
-          <span>contabilidad</span><span>inmobiliaria</span><span>desarrollo y tecnología</span><span>educación</span><span>salud</span><span>importación</span>
+        <div class="sec-top">
+          <span class="tag">sobre mí</span>
+          <h2 class="h2">Cómo llegué acá.</h2>
         </div>
-      </div>
-    </section>
 
-    <!-- ================= ahora ================= -->
-    <section class="now" id="ahora">
-      <div class="inner">
-        <span class="tag">ahora</span>
-        <h2 class="h2">En qué estoy metido este mes.</h2>
-        <div class="now-list">
-          <div class="now-item"><i aria-hidden="true">→</i><p>Migrando un sistema de <b>planillas</b> de Excel a una aplicación propia en Python, con la especificación escrita antes del código.</p></div>
-          <div class="now-item"><i aria-hidden="true">→</i><p>Probando <b>lectura por OCR</b> de documentos escaneados para conciliarlos contra un registro externo sin digitar nada.</p></div>
-          <div class="now-item"><i aria-hidden="true">→</i><p>Automatizando con <b>RPA</b> el registro de atenciones de un doctor en fisioterapia: el robot maneja la aplicación de escritorio desde su propia interfaz, con el usuario autorizado y sin tocar la base de datos. Quince registros idénticos por turno se vuelven una lista de cuentas.</p></div>
-          <div class="now-item"><i aria-hidden="true">→</i><p>Arrancando la <b>segunda fase</b> del sistema de atención de una importadora de maquinaria de Los Olivos. La primera, con el <b>chatbot</b> que precalifica por WhatsApp, etiqueta y asigna al asesor, ya está en producción y cerrada con acta de conformidad firmada.</p></div>
+        <div class="about-grid about">
+          <figure class="about-video">
+            <video controls preload="metadata" playsinline poster="demos/presentacion.jpg">
+              <source src="demos/presentacion.mp4" type="video/mp4">
+            </video>
+            <figcaption>presentación · 2:56</figcaption>
+          </figure>
+
+          <div class="aside-col">
+            <div class="ficha">
+              <h3>ficha rápida</h3>
+              <dl>
+                <dt>base</dt>
+                <dd><b>Lima, Perú</b><br>presencial y remoto</dd>
+                <dt>formación</dt>
+                <dd>Ingeniería de Sistemas<br>Universidad Peruana de Ciencias Aplicadas</dd>
+                <dt>enfoque</dt>
+                <dd>Automatización, software a medida, infraestructura e IA aplicada</dd>
+                <dt>publicación</dt>
+                <dd>IEEE INTERCON 2026<br>Trujillo, Perú</dd>
+                <dt>marca de trabajo</dt>
+                <dd><b>Nexlayer</b><br>en constitución</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="about-texto">
+            <p>Estudié ingeniería de sistemas en la UPC. Antes de trabajar por mi cuenta hice soporte de TI corporativo en el sector banca, y ahí aprendí algo que no te enseñan en clase: <strong>la diferencia entre un sistema que funciona y uno que la gente realmente usa.</strong></p>
+            <p>He trabajado dentro de operaciones de <strong>finanzas, cobranza, transporte, catering, contabilidad, inmobiliaria, educación y tecnología.</strong> Esa variedad me dio el ojo para reconocer rápido dónde está el cuello de botella, aunque el negocio me sea nuevo.</p>
+            <p>Trabajo en la intersección de tres cosas que rara vez coinciden en la misma persona: <strong>infraestructura, desarrollo y procesos de negocio.</strong> Puedo levantar un dominio con Active Directory, escribir el importador que ataca directamente el formato de datos de un sistema cerrado, y sentarme después con quien lo va a usar para ver si le sirve.</p>
+            <p>En paralelo hago investigación aplicada en aprendizaje automático. Esa disciplina se me pegó para el trabajo comercial: validar antes de construir, medir lo que se afirma, escribir la especificación antes del código. Para los encargos de infraestructura y mantenimiento continuo trabajo bajo el nombre <strong>Nexlayer</strong>.</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="job">
+            <div class="when">2024 — hoy</div>
+            <div>
+              <h3>Automatización, software e infraestructura</h3>
+              <span class="where">independiente · Nexlayer</span>
+              <p>Desarrollo de sistemas a medida y responsabilidad completa sobre la operación técnica de las oficinas donde corren: servidores, dominio, respaldos y soporte diario.</p>
+            </div>
+          </article>
+          <article class="job">
+            <div class="when">2025 — 2026</div>
+            <div>
+              <h3>Investigación aplicada en aprendizaje automático</h3>
+              <span class="where">proyecto SENTIR · UPC</span>
+              <p>Diseño, desarrollo y validación de una plataforma de detección temprana para colegios. Piloto de campo con 102 aplicaciones y publicación aceptada en una conferencia IEEE.</p>
+            </div>
+          </article>
+          <article class="job">
+            <div class="when">hasta 2026</div>
+            <div>
+              <h3>Soporte de TI corporativo</h3>
+              <span class="where">sector banca · consultora de TI</span>
+              <p>Atención a usuarios y equipos en un entorno con estándares altos de disponibilidad y control de cambios. De ahí me quedó el criterio sobre ventanas de mantenimiento y niveles de servicio.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -329,65 +373,38 @@
       </div>
     </section>
 
-    <!-- ================= sobre mí ================= -->
-    <section id="sobre-mi">
+    <!-- ================= servicios ================= -->
+    <section id="servicios">
       <div class="inner">
         <div class="sec-top">
-          <span class="tag">sobre mí</span>
-          <h2 class="h2">Cómo llegué acá.</h2>
+          <span class="tag">servicios</span>
+          <h2 class="h2">En qué te puedo ayudar.</h2>
+          <p class="sub">Puedo tomar un frente solo o los cuatro. Lo normal es empezar por el proceso que más duele.</p>
         </div>
-
-        <div class="about-grid about">
-          <div>
-            <p>Estudié ingeniería de sistemas en la UPC. Antes de trabajar por mi cuenta hice soporte de TI corporativo en el sector banca, y ahí aprendí algo que no te enseñan en clase: <strong>la diferencia entre un sistema que funciona y uno que la gente realmente usa.</strong></p>
-            <p>He trabajado dentro de operaciones de <strong>finanzas, cobranza, transporte, catering, contabilidad, inmobiliaria, educación y tecnología.</strong> Esa variedad me dio el ojo para reconocer rápido dónde está el cuello de botella, aunque el negocio me sea nuevo.</p>
-            <p>Trabajo en la intersección de tres cosas que rara vez coinciden en la misma persona: <strong>infraestructura, desarrollo y procesos de negocio.</strong> Puedo levantar un dominio con Active Directory, escribir el importador que ataca directamente el formato de datos de un sistema cerrado, y sentarme después con quien lo va a usar para ver si le sirve.</p>
-            <p>En paralelo hago investigación aplicada en aprendizaje automático. Esa disciplina se me pegó para el trabajo comercial: validar antes de construir, medir lo que se afirma, escribir la especificación antes del código. Para los encargos de infraestructura y mantenimiento continuo trabajo bajo el nombre <strong>Nexlayer</strong>.</p>
-          </div>
-
-          <div class="aside-col">
-            <div class="ficha">
-              <h3>ficha rápida</h3>
-              <dl>
-                <dt>base</dt>
-                <dd><b>Lima, Perú</b><br>presencial y remoto</dd>
-                <dt>formación</dt>
-                <dd>Ingeniería de Sistemas<br>Universidad Peruana de Ciencias Aplicadas</dd>
-                <dt>enfoque</dt>
-                <dd>Automatización, software a medida, infraestructura e IA aplicada</dd>
-                <dt>publicación</dt>
-                <dd>IEEE INTERCON 2026<br>Trujillo, Perú</dd>
-                <dt>marca de trabajo</dt>
-                <dd><b>Nexlayer</b><br>en constitución</dd>
-              </dl>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline">
-          <article class="job">
-            <div class="when">2024 — hoy</div>
-            <div>
-              <h3>Automatización, software e infraestructura</h3>
-              <span class="where">independiente · Nexlayer</span>
-              <p>Desarrollo de sistemas a medida y responsabilidad completa sobre la operación técnica de las oficinas donde corren: servidores, dominio, respaldos y soporte diario.</p>
-            </div>
+        <div class="cards">
+          <article class="card rv">
+            <span class="c-no">01</span>
+            <h3>Automatización de procesos</h3>
+            <p>Cargas masivas, integraciones entre sistemas que no se hablan, clasificación automática de registros, generación de archivos y reportes. Me meto en el formato de datos del sistema que ya usas —aunque sea cerrado— en vez de pedirte que lo cambies.</p>
+            <ul class="mini"><li>cargas por lote</li><li>integraciones</li><li>reportes</li></ul>
           </article>
-          <article class="job">
-            <div class="when">2025 — 2026</div>
-            <div>
-              <h3>Investigación aplicada en aprendizaje automático</h3>
-              <span class="where">proyecto SENTIR · UPC</span>
-              <p>Diseño, desarrollo y validación de una plataforma de detección temprana para colegios. Piloto de campo con 102 aplicaciones y publicación aceptada en una conferencia IEEE.</p>
-            </div>
+          <article class="card rv">
+            <span class="c-no">02</span>
+            <h3>Software a medida</h3>
+            <p>Aplicaciones web y de escritorio para tu proceso exacto: plataformas internas, cargas por lote, cotizadores, paneles de control. Con especificación escrita y aprobada antes de la primera línea de código.</p>
+            <ul class="mini"><li>web</li><li>escritorio</li><li>paneles</li></ul>
           </article>
-          <article class="job">
-            <div class="when">hasta 2026</div>
-            <div>
-              <h3>Soporte de TI corporativo</h3>
-              <span class="where">sector banca · consultora de TI</span>
-              <p>Atención a usuarios y equipos en un entorno con estándares altos de disponibilidad y control de cambios. De ahí me quedó el criterio sobre ventanas de mantenimiento y niveles de servicio.</p>
-            </div>
+          <article class="card rv">
+            <span class="c-no">03</span>
+            <h3>Infraestructura y seguridad</h3>
+            <p>Servidores, virtualización, Active Directory, servidor de archivos, sincronización, VPN, respaldos y monitoreo. Con tiempos de respuesta por prioridad y ventanas de cambio pactadas.</p>
+            <ul class="mini"><li>servidores</li><li>dominio</li><li>respaldos</li><li>soporte mensual</li></ul>
+          </article>
+          <article class="card rv">
+            <span class="c-no">04</span>
+            <h3>IA aplicada al negocio</h3>
+            <p>Asistentes con acceso a tus documentos, lectura por OCR y modelos de lenguaje que clasifican texto en español. Siempre con confirmación humana antes de que el sistema toque algo que importa.</p>
+            <ul class="mini"><li>asistentes</li><li>OCR</li><li>clasificación</li></ul>
           </article>
         </div>
       </div>
@@ -431,39 +448,29 @@
       </div>
     </section>
 
-    <!-- ================= servicios ================= -->
-    <section id="servicios">
+    <!-- ================= ahora ================= -->
+    <section class="now" id="ahora">
       <div class="inner">
-        <div class="sec-top">
-          <span class="tag">servicios</span>
-          <h2 class="h2">En qué te puedo ayudar.</h2>
-          <p class="sub">Puedo tomar un frente solo o los cuatro. Lo normal es empezar por el proceso que más duele.</p>
+        <span class="tag">ahora</span>
+        <h2 class="h2">En qué estoy metido este mes.</h2>
+        <div class="now-list">
+          <div class="now-item"><i aria-hidden="true">→</i><p>Migrando un sistema de <b>planillas</b> de Excel a una aplicación propia en Python, con la especificación escrita antes del código.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Probando <b>lectura por OCR</b> de documentos escaneados para conciliarlos contra un registro externo sin digitar nada.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Automatizando con <b>RPA</b> el registro de atenciones de un doctor en fisioterapia: el robot maneja la aplicación de escritorio desde su propia interfaz, con el usuario autorizado y sin tocar la base de datos. Quince registros idénticos por turno se vuelven una lista de cuentas.</p></div>
+          <div class="now-item"><i aria-hidden="true">→</i><p>Arrancando la <b>segunda fase</b> del sistema de atención de una importadora de maquinaria de Los Olivos. La primera, con el <b>chatbot</b> que precalifica por WhatsApp, etiqueta y asigna al asesor, ya está en producción y cerrada con acta de conformidad firmada.</p></div>
         </div>
-        <div class="cards">
-          <article class="card rv">
-            <span class="c-no">01</span>
-            <h3>Automatización de procesos</h3>
-            <p>Cargas masivas, integraciones entre sistemas que no se hablan, clasificación automática de registros, generación de archivos y reportes. Me meto en el formato de datos del sistema que ya usas —aunque sea cerrado— en vez de pedirte que lo cambies.</p>
-            <ul class="mini"><li>cargas por lote</li><li>integraciones</li><li>reportes</li></ul>
-          </article>
-          <article class="card rv">
-            <span class="c-no">02</span>
-            <h3>Software a medida</h3>
-            <p>Aplicaciones web y de escritorio para tu proceso exacto: plataformas internas, cargas por lote, cotizadores, paneles de control. Con especificación escrita y aprobada antes de la primera línea de código.</p>
-            <ul class="mini"><li>web</li><li>escritorio</li><li>paneles</li></ul>
-          </article>
-          <article class="card rv">
-            <span class="c-no">03</span>
-            <h3>Infraestructura y seguridad</h3>
-            <p>Servidores, virtualización, Active Directory, servidor de archivos, sincronización, VPN, respaldos y monitoreo. Con tiempos de respuesta por prioridad y ventanas de cambio pactadas.</p>
-            <ul class="mini"><li>servidores</li><li>dominio</li><li>respaldos</li><li>soporte mensual</li></ul>
-          </article>
-          <article class="card rv">
-            <span class="c-no">04</span>
-            <h3>IA aplicada al negocio</h3>
-            <p>Asistentes con acceso a tus documentos, lectura por OCR y modelos de lenguaje que clasifican texto en español. Siempre con confirmación humana antes de que el sistema toque algo que importa.</p>
-            <ul class="mini"><li>asistentes</li><li>OCR</li><li>clasificación</li></ul>
-          </article>
+      </div>
+    </section>
+
+    <!-- ================= rubros ================= -->
+    <section class="band sin-estrellas" id="rubros">
+      <div class="inner">
+        <span class="tag">rubros</span>
+        <h2 class="h2">El proceso cambia de nombre según el rubro. El cuello de botella casi nunca cambia.</h2>
+        <p class="sub">He trabajado dentro de operaciones muy distintas, y en todas encontré lo mismo: gente copiando datos de un sistema a otro. Eso es lo que resuelvo.</p>
+        <div class="chips">
+          <span>finanzas</span><span>cobranza</span><span>transporte</span><span>catering</span>
+          <span>contabilidad</span><span>inmobiliaria</span><span>desarrollo y tecnología</span><span>educación</span><span>salud</span><span>importación</span>
         </div>
       </div>
     </section>

@@ -465,8 +465,8 @@
     /* una constelación por sección, alternando izquierda y derecha en los
        márgenes; en pantallas angostas no hay margen y quedarían sobre el
        texto, así que ahí sólo queda el campo de estrellas */
-    /* rubros va sin estrellas: ahí no se pone constelación */
-    var secs = document.querySelectorAll('.main section:not(.hero):not(#rubros)');
+    /* las secciones .sin-estrellas no llevan constelación */
+    var secs = document.querySelectorAll('.main section:not(.hero):not(.sin-estrellas)');
     var margen = Math.max(0, (w - 1000) / 2);
     if (margen < 100) { return; }
     Array.prototype.forEach.call(secs, function (sec, k) {
