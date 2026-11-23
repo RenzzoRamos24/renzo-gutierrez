@@ -139,7 +139,7 @@ section{padding:clamp(56px,7vw,94px) 0;transition:background .35s ease}
   background:rgba(15,82,186,.32);border:1px solid rgba(143,178,245,.45);color:#fff;backdrop-filter:blur(6px)}
 .hero-lead{font-size:clamp(1.02rem,.55vw + .85rem,1.14rem);color:#DCE3F1;max-width:64ch;margin-top:24px;text-shadow:0 0 6px #04060D,0 0 12px rgba(4,6,13,.9),0 2px 14px rgba(4,6,13,.8)}
 .hero-lead+.hero-lead{margin-top:12px;color:#B7C3DB}
-.hero-lead b{color:#fff;font-weight:600;border-bottom:2px solid #6F9BE8}
+.hero-lead b{color:#fff;font-weight:600;border-bottom:2px solid #6F9BE8;white-space:nowrap}
 .hero-meta{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
 .hero-meta li{font-family:var(--mono);font-size:10.5px;color:#DCE3F1;border:1px solid rgba(255,255,255,.18);background:rgba(4,6,13,.35);
   padding:6px 11px;display:inline-flex;align-items:center;gap:8px}
@@ -295,8 +295,6 @@ html[data-theme="dark"] .s-live{color:#04060D}
 /* stack como chips, igual que en el ejemplo */
 .w-stack{margin:2px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .w-stack li{font-family:var(--mono);font-size:10px;color:var(--text-2);background:rgba(255,255,255,.06);border:1px solid var(--hair-2);padding:4px 9px}
-/* nota al pie de una ficha: que se sepa hasta donde llega lo comprobado */
-.w-nota{font-family:var(--mono);font-size:10px;line-height:1.65;color:var(--text-3);padding-top:10px;border-top:1px dashed var(--hair)}
 .w-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:4px}
 /* enlace al sitio publicado: contorno, al lado del botón de demo */
 .w-link{font-family:var(--mono);font-size:11px;color:var(--dia-lt);text-decoration:none;border:1px solid var(--dia-lt);
