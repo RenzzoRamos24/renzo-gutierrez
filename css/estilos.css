@@ -298,6 +298,10 @@ html[data-theme="dark"] .s-live{color:#04060D}
 /* nota al pie de una ficha: que se sepa hasta donde llega lo comprobado */
 .w-nota{font-family:var(--mono);font-size:10px;line-height:1.65;color:var(--text-3);padding-top:10px;border-top:1px dashed var(--hair)}
 .w-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:4px}
+/* enlace al sitio publicado: contorno, al lado del botón de demo */
+.w-link{font-family:var(--mono);font-size:11px;color:var(--dia-lt);text-decoration:none;border:1px solid var(--dia-lt);
+  padding:9px 16px;display:inline-flex;align-items:center;transition:.2s;white-space:nowrap}
+.w-link:hover{background:#0F52BA;border-color:#0F52BA;color:#fff}
 
 /* botón de demo */
 .demo-btn{

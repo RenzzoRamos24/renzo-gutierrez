@@ -55,6 +55,14 @@ var DEMOS = {
     ],
     aviso:  "Todos los datos que se ven en estas capturas son ficticios: empresas, RUCs, nombres, DNIs y sueldos están inventados para no exponer información de ningún cliente. La aplicación es real; los datos no.",
     nota:   "Capturas de la versión en desarrollo."
+  },
+
+  /* 12 — landing del congreso SOPEFICARI · SOLACUR 2026. YA CONECTADA. */
+  "congreso": {
+    titulo: "SOPEFICARI · SOLACUR 2026",
+    tipo:   "sitio",
+    src:    "https://sopeficari.com/",
+    nota:   "El sitio publicado del congreso, en sopeficari.com."
   }
 
 };

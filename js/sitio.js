@@ -103,7 +103,9 @@
 
     } else if (d.tipo === 'sitio' && d.src) {
       mKind.textContent = '/ demo en vivo';
-      mBody.innerHTML = '<iframe src="' + esc(d.src) + '" loading="lazy" title="Demo: ' + esc(d.titulo || '') + '"></iframe>';
+      /* sin loading="lazy": el iframe sólo existe cuando se abre la demo,
+         diferir su carga no ahorra nada y sí la retrasa */
+      mBody.innerHTML = '<iframe src="' + esc(d.src) + '" title="Demo: ' + esc(d.titulo || '') + '"></iframe>';
       mLink.href = d.src;
       mLink.hidden = false;
       vigilarIframe(mBody.querySelector('iframe'));
@@ -132,18 +134,25 @@
     modal.querySelector('.modal-x').focus();
   }
 
-  /* si el sitio no permite verse incrustado o no responde, se avisa
-     en vez de dejar un recuadro negro vacío */
+  /* si el sitio tarda o no permite verse incrustado, se avisa encima con el
+     enlace a una pestaña nueva, pero la demo NO se borra: un sitio pesado en
+     una conexión lenta puede tardar más y debe poder terminar de cargar.
+     Cuando carga, el aviso se va solo. */
   function vigilarIframe(fr) {
     if (!fr) { return; }
-    var cargo = false;
-    fr.addEventListener('load', function () { cargo = true; });
+    var cargo = false, aviso = null;
+    fr.addEventListener('load', function () {
+      cargo = true;
+      if (aviso && aviso.parentNode) { aviso.parentNode.removeChild(aviso); }
+    });
     setTimeout(function () {
       if (cargo || !mBody.contains(fr)) { return; }
-      mBody.innerHTML = '<div class="pending"><b>No se pudo mostrar la demo aquí dentro.</b>' +
-        '<p>Algunos sitios no permiten abrirse incrustados en otra página. Usa el enlace de ' +
-        'abajo para verla en una pestaña nueva.</p></div>';
-    }, 9000);
+      aviso = document.createElement('p');
+      aviso.className = 'shots-aviso';
+      aviso.textContent = 'La demo está tardando en cargar. Si no aparece, usa el enlace ' +
+        '“abrir en pestaña nueva” de abajo.';
+      mBody.insertBefore(aviso, fr);
+    }, 8000);
   }
 
   function cerrar() {

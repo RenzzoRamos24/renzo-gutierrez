@@ -58,8 +58,8 @@ destacado encima de las capturas. Se usa para advertir que los datos son
 ficticios. Ojo con su límite: no se ve al ampliar una foto ni si alguien la
 descarga, así que la misma advertencia debe ir grabada dentro de la imagen.
 
-Demos conectadas hoy: `colegio` (sitio), `importador` (video) y `planillas-app`
-(capturas). Las demás siguen con `tipo: ""`.
+Demos conectadas hoy: `colegio` (sitio), `importador` (video), `planillas-app`
+(capturas) y `congreso` (sitio). Las demás siguen con `tipo: ""`.
 
 ## Preparar los archivos de una demo
 
