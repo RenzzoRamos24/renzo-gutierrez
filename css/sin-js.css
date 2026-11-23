@@ -2,4 +2,4 @@
    Sin esto, todo lo que aparece con scroll se quedaría invisible para siempre
    y los botones de demo no harían nada. */
 .rv{opacity:1!important;transform:none!important}
-.themetog,.demo-btn{display:none!important}
+.demo-btn{display:none!important}

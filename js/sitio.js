@@ -1,57 +1,18 @@
 /* =====================================================================
    sitio.js — todo el comportamiento de la página:
-     1. botón de modo día / noche
-     2. ventana de demo
-     3. apariciones al hacer scroll
-     4. sección activa en el menú lateral
-   Depende de tema.js (ya corrió en el <head>) y de demos.js (objeto DEMOS).
+     1. ventana de demo
+     2. apariciones al hacer scroll
+     3. sección activa en el menú y barra sólida al bajar
+     4. estrellas que suben en la portada
+     5. lluvia de estrellas fugaces en toda la página
+     6. cielo de fondo con constelaciones
+   Depende de demos.js (objeto DEMOS).
    ===================================================================== */
 (function () {
   'use strict';
 
   /* ---------------------------------------------------------------
-     1. modo día / noche
-     --------------------------------------------------------------- */
-  var root   = document.documentElement,
-      labels = document.querySelectorAll('.js-theme-label'),
-      togs   = document.querySelectorAll('.js-theme'),
-      eleccionDelUsuario = !!window.__temaGuardado;
-
-  function pintar(modo, guardar) {
-    if (modo === 'dark') { root.setAttribute('data-theme', 'dark'); }
-    else                 { root.removeAttribute('data-theme'); }
-
-    Array.prototype.forEach.call(labels, function (l) {
-      l.textContent = (modo === 'dark') ? 'noche' : 'día';
-    });
-    Array.prototype.forEach.call(togs, function (b) {
-      b.setAttribute('aria-pressed', modo === 'dark' ? 'true' : 'false');
-    });
-
-    if (guardar) { try { localStorage.setItem('tema', modo); } catch (e) {} }
-  }
-
-  pintar(window.__tema || 'light', false);
-
-  Array.prototype.forEach.call(togs, function (b) {
-    b.addEventListener('click', function () {
-      eleccionDelUsuario = true;
-      pintar(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
-    });
-  });
-
-  /* mientras el usuario no elija a mano, el sitio sigue al sistema en vivo */
-  if (window.matchMedia) {
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    var alCambiar = function (e) {
-      if (!eleccionDelUsuario) { pintar(e.matches ? 'dark' : 'light', false); }
-    };
-    if (mq.addEventListener)   { mq.addEventListener('change', alCambiar); }
-    else if (mq.addListener)   { mq.addListener(alCambiar); }
-  }
-
-  /* ---------------------------------------------------------------
-     2. ventana de demo
+     1. ventana de demo
      --------------------------------------------------------------- */
   var modal  = document.getElementById('modal'),
       mBody  = document.getElementById('modal-body'),
@@ -244,7 +205,7 @@
   });
 
   /* ---------------------------------------------------------------
-     3. apariciones al hacer scroll
+     2. apariciones al hacer scroll
      --------------------------------------------------------------- */
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els = document.querySelectorAll('.rv');
@@ -261,10 +222,24 @@
   }
 
   /* ---------------------------------------------------------------
-     4. sección activa en el menú lateral
+     3. sección activa en el menú y barra sólida al bajar
      --------------------------------------------------------------- */
+  /* sobre la portada la barra es transparente; pasada la portada toma
+     el fondo del tema para que el menú se siga leyendo */
+  var nav  = document.getElementById('nav'),
+      hero = document.getElementById('inicio');
+
+  function barra() {
+    if (!nav || !hero) { return; }
+    var fondo = hero.getBoundingClientRect().bottom <= nav.offsetHeight;
+    nav.classList.toggle('solid', fondo);
+  }
+  window.addEventListener('scroll', barra, { passive: true });
+  window.addEventListener('resize', barra);
+  barra();
+
   var secciones = [];
-  Array.prototype.forEach.call(document.querySelectorAll('#railnav a'), function (a) {
+  Array.prototype.forEach.call(document.querySelectorAll('#menu a'), function (a) {
     var href = a.getAttribute('href') || '';
     if (href.charAt(0) !== '#') { return; }
     var el = document.getElementById(href.slice(1));
@@ -278,7 +253,8 @@
       pendiente = false;
       var y = window.pageYOffset || document.documentElement.scrollTop || 0;
       var linea = y + Math.min(window.innerHeight * 0.3, 240);
-      var actual = secciones[0];
+      /* en la portada todavía no hay ninguna sección activa */
+      var actual = null;
 
       for (var i = 0; i < secciones.length; i++) {
         var top = secciones[i].el.getBoundingClientRect().top + y;
@@ -306,4 +282,206 @@
     window.addEventListener('load', pedir);
     marcar();
   }
+
+  /* ---------------------------------------------------------------
+     4. estrellas que suben en la portada
+     --------------------------------------------------------------- */
+  /* Cada capa recibe una lista de sombras: cada estrella va dos veces,
+     en (x, y) y en (x, y + alto), así al subir un alto completo la
+     segunda copia ocupa el lugar de la primera y el bucle no se nota.
+     Se calcula en píxeles con el tamaño real de la portada: en el
+     celular la portada es más alta que la pantalla y con vh quedarían
+     franjas sin estrellas. */
+  var COLORES = ['#fff9', '#fffb', '#fffd', '#d6e2ff'];
+  var CAPAS = [
+    { sel: '.space-1', size: '1px', total: 200, duration: '25s' },
+    { sel: '.space-2', size: '2px', total: 100, duration: '20s' },
+    { sel: '.space-3', size: '4px', total: 25,  duration: '15s' }
+  ];
+  var anchoPrevio = 0;
+
+  function estrellas() {
+    if (!hero) { return; }
+    var w = hero.clientWidth, h = hero.clientHeight;
+    /* la densidad de referencia es una pantalla de 1440 × 900 */
+    var escala = Math.max(0.35, (w * h) / (1440 * 900));
+    anchoPrevio = w;
+
+    CAPAS.forEach(function (c) {
+      var el = hero.querySelector(c.sel);
+      if (!el) { return; }
+      var n = Math.round(c.total * escala), capa = [];
+      for (var i = 0; i < n; i++) {
+        var color = COLORES[Math.floor(Math.random() * COLORES.length)];
+        var x = Math.floor(Math.random() * w), y = Math.floor(Math.random() * h);
+        capa.push(x + 'px ' + y + 'px 0 ' + color, x + 'px ' + (y + h) + 'px 0 ' + color);
+      }
+      el.style.setProperty('--space-layer', capa.join(','));
+      el.style.setProperty('--size', c.size);
+      el.style.setProperty('--duration', c.duration);
+      el.style.setProperty('--alto', h + 'px');
+    });
+  }
+
+  estrellas();
+  /* sólo se redibuja si cambia el ancho: en el celular la barra del
+     navegador cambia el alto al hacer scroll y no vale la pena rehacerlo */
+  window.addEventListener('resize', function () {
+    if (hero && hero.clientWidth !== anchoPrevio) { estrellas(); }
+  });
+
+  /* ---------------------------------------------------------------
+     5. lluvia de estrellas fugaces en toda la página
+     --------------------------------------------------------------- */
+  /* Las estrellas viven en coordenadas de la página, no de la pantalla: cada
+     una nace en un punto de la zona que se está viendo, baja despacio en
+     diagonal y se apaga; si el usuario sigue bajando, se queda donde cayó.
+     Al terminar descansa unos segundos y vuelve a nacer en otro punto. */
+  var lluvia = document.getElementById('lluvia');
+  var reduceMov = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COLA = 150;
+
+  function lanzar(el) {
+    var w = lluvia.clientWidth, alto = lluvia.clientHeight;
+    var vista = window.innerHeight, arriba = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var ang = (25 + Math.random() * 15) * Math.PI / 180;      /* 25° a 40° hacia abajo */
+    var cos = Math.cos(ang), sin = Math.sin(ang);
+
+    /* nace en la mitad izquierda y en la parte alta de lo que se está viendo */
+    var x = Math.random() * w * 0.6;
+    var y = arriba + Math.random() * vista * 0.55;
+
+    /* cae entre 500 y 900 px, sin pasarse del borde derecho ni del final de la página */
+    var dist = Math.min(500 + Math.random() * 400, (w - x) / cos, (alto - y) / sin) + COLA;
+
+    /* el giro es sobre la cabeza (transform-origin a la derecha) */
+    el.style.setProperty('--x', (x - COLA) + 'px');
+    el.style.setProperty('--y', y + 'px');
+    el.style.setProperty('--ang', ang + 'rad');
+    el.style.setProperty('--dist', dist + 'px');
+    /* lento: unos 110 a 160 px por segundo */
+    el.style.setProperty('--dur', (dist / (110 + Math.random() * 50)).toFixed(2) + 's');
+
+    el.classList.remove('va');
+    void el.offsetWidth;                 /* reinicia la animación */
+    el.classList.add('va');
+  }
+
+  if (lluvia && !reduceMov) {
+    for (var k = 0; k < 7; k++) {
+      (function (f) {
+        f.className = 'fugaz' + (k % 3 === 0 ? ' azul' : '');
+        f.addEventListener('animationend', function () {
+          setTimeout(function () { lanzar(f); }, 1500 + Math.random() * 5000);
+        });
+        lluvia.appendChild(f);
+        setTimeout(function () { lanzar(f); }, Math.random() * 9000);
+      })(document.createElement('span'));
+    }
+  }
+
+  /* ---------------------------------------------------------------
+     6. cielo de fondo con constelaciones
+     --------------------------------------------------------------- */
+  /* Del final del header al final de la página: un campo de estrellas fijas
+     (box-shadow, como en la portada), unas pocas que titilan y una
+     constelación real por sección, alternando lados en los márgenes para no
+     quedar detrás del texto. Las coordenadas de cada figura van de 0 a 1. */
+  var cielo = document.getElementById('cielo');
+  var FIGURAS = [
+    { nombre: 'Cruz del Sur', tam: 130,
+      p: [[.5,0],[.5,1],[.08,.46],[.88,.4],[.64,.62]], l: [[0,4],[4,1],[2,3]] },
+    { nombre: 'Orión', tam: 170,
+      p: [[.16,.04],[.76,.12],[.4,.48],[.5,.5],[.6,.53],[.26,.96],[.86,.9],[.46,.02]],
+      l: [[0,7],[7,1],[0,2],[1,4],[2,3],[3,4],[2,5],[4,6]] },
+    { nombre: 'Osa Mayor', tam: 190,
+      p: [[0,.12],[.17,.2],[.32,.3],[.47,.4],[.52,.72],[.82,.8],[.88,.46]],
+      l: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,3]] },
+    { nombre: 'Casiopea', tam: 160,
+      p: [[0,.25],[.25,.8],[.5,.42],[.75,.92],[1,.18]], l: [[0,1],[1,2],[2,3],[3,4]] }
+  ];
+  var anchoCielo = 0;
+
+  function sombras(n, w, h, alfaMin, alfaMax) {
+    var out = [];
+    for (var i = 0; i < n; i++) {
+      var a = (alfaMin + Math.random() * (alfaMax - alfaMin)).toFixed(2);
+      out.push(Math.floor(Math.random() * w) + 'px ' + Math.floor(Math.random() * h) + 'px 0 rgba(255,255,255,' + a + ')');
+    }
+    return out.join(',');
+  }
+
+  function constelacion(f, x, y) {
+    var t = f.tam, ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('class', 'constelacion');
+    svg.setAttribute('width', t); svg.setAttribute('height', t);
+    svg.style.left = x + 'px'; svg.style.top = y + 'px';
+    f.l.forEach(function (l) {
+      var ln = document.createElementNS(ns, 'line');
+      ln.setAttribute('x1', f.p[l[0]][0] * t); ln.setAttribute('y1', f.p[l[0]][1] * t);
+      ln.setAttribute('x2', f.p[l[1]][0] * t); ln.setAttribute('y2', f.p[l[1]][1] * t);
+      svg.appendChild(ln);
+    });
+    f.p.forEach(function (p, i) {
+      var c = document.createElementNS(ns, 'circle');
+      c.setAttribute('cx', p[0] * t); c.setAttribute('cy', p[1] * t);
+      c.setAttribute('r', i % 3 === 0 ? 2 : 1.5);
+      svg.appendChild(c);
+    });
+    return svg;
+  }
+
+  function dibujarCielo() {
+    if (!cielo) { return; }
+    var arriba = hero ? hero.offsetTop + hero.offsetHeight : 0;
+    cielo.style.top = arriba + 'px';
+    /* el alto lo da el CSS (top a bottom del body); aquí sólo se lee */
+    var w = cielo.clientWidth, h = cielo.clientHeight;
+    cielo.innerHTML = '';
+    anchoCielo = w;
+
+    /* densidad: una estrella chica cada ~9.000 px² y una grande cada ~90.000 */
+    var chicas = document.createElement('span'), grandes = document.createElement('span');
+    chicas.className = 'campo';
+    grandes.className = 'campo g';
+    chicas.style.setProperty('--campo', sombras(Math.round(w * h / 9000), w, h, .15, .55));
+    grandes.style.setProperty('--campo', sombras(Math.round(w * h / 90000), w, h, .4, .8));
+    cielo.appendChild(chicas);
+    cielo.appendChild(grandes);
+
+    /* las que titilan */
+    var nb = Math.round(w * h / 60000);
+    for (var i = 0; i < nb; i++) {
+      var b = document.createElement('span');
+      b.className = 'brillo';
+      b.style.left = Math.floor(Math.random() * w) + 'px';
+      b.style.top  = Math.floor(Math.random() * h) + 'px';
+      b.style.setProperty('--t', (2.5 + Math.random() * 4).toFixed(2) + 's');
+      b.style.setProperty('--d', (-Math.random() * 6).toFixed(2) + 's');
+      cielo.appendChild(b);
+    }
+
+    /* una constelación por sección, alternando izquierda y derecha en los
+       márgenes; en pantallas angostas no hay margen y quedarían sobre el
+       texto, así que ahí sólo queda el campo de estrellas */
+    /* rubros va sin estrellas: ahí no se pone constelación */
+    var secs = document.querySelectorAll('.main section:not(.hero):not(#rubros)');
+    var margen = Math.max(0, (w - 1000) / 2);
+    if (margen < 100) { return; }
+    Array.prototype.forEach.call(secs, function (sec, k) {
+      var f = FIGURAS[k % FIGURAS.length];
+      var copia = { p: f.p, l: f.l, tam: Math.min(f.tam, margen - 30) };
+      var izquierda = k % 2 === 0;
+      var x = izquierda ? (margen - copia.tam) / 2 : w - margen + (margen - copia.tam) / 2;
+      var y = sec.offsetTop - arriba + 60 + Math.random() * Math.max(0, sec.offsetHeight - copia.tam - 120);
+      cielo.appendChild(constelacion(copia, x, y));
+    });
+  }
+
+  dibujarCielo();
+  window.addEventListener('load', dibujarCielo);
+  window.addEventListener('resize', function () {
+    if (cielo && cielo.clientWidth !== anchoCielo) { dibujarCielo(); }
+  });
 })();
