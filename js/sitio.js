@@ -343,50 +343,78 @@
      5. lluvia de estrellas fugaces en toda la página
      --------------------------------------------------------------- */
   /* Las estrellas viven en coordenadas de la página, no de la pantalla: cada
-     una nace en un punto de la zona que se está viendo, baja despacio en
-     diagonal y se apaga; si el usuario sigue bajando, se queda donde cayó.
-     Al terminar descansa unos segundos y vuelve a nacer en otro punto. */
+     una entra desde fuera de la vista (por el borde izquierdo o por arriba de
+     lo que se está viendo), cae en diagonal y sigue su curso hasta salir por
+     el borde derecho o perderse más abajo en la página; nunca aparece ni se
+     apaga en medio de la pantalla (la capa recorta los bordes). Si el usuario
+     sigue bajando, se queda en su lugar de la página.
+     Salen por turnos, una cada pocos segundos y lejos de la anterior, para que
+     no se amontonen. */
   var lluvia = document.getElementById('lluvia');
   var reduceMov = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var COLA = 150;
+  var libres = [], ultima = null;
+
+  /* punto de entrada fuera de la vista: borde izquierdo o justo encima de lo
+     que se ve; se repite si queda muy cerca de la entrada anterior */
+  function entrada(w, arriba, vista) {
+    var p;
+    for (var k = 0; k < 12; k++) {
+      p = Math.random() < 0.5
+        ? { x: 0, y: arriba + Math.random() * vista * 0.55 }
+        : { x: Math.random() * w * 0.7, y: arriba - 10 };
+      if (!ultima || Math.abs(p.x - ultima.x) + Math.abs(p.y - ultima.y) > Math.min(w, vista) * 0.35) { break; }
+    }
+    return p;
+  }
 
   function lanzar(el) {
     var w = lluvia.clientWidth, alto = lluvia.clientHeight;
     var vista = window.innerHeight, arriba = window.pageYOffset || document.documentElement.scrollTop || 0;
-    var ang = (25 + Math.random() * 15) * Math.PI / 180;      /* 25° a 40° hacia abajo */
+    var ang = (28 + Math.random() * 10) * Math.PI / 180;      /* 28° a 38° hacia abajo */
     var cos = Math.cos(ang), sin = Math.sin(ang);
 
-    /* nace en la mitad izquierda y en la parte alta de lo que se está viendo */
-    var x = Math.random() * w * 0.6;
-    var y = arriba + Math.random() * vista * 0.55;
+    var p = entrada(w, arriba, vista);
+    ultima = p;
 
-    /* cae entre 500 y 900 px, sin pasarse del borde derecho ni del final de la página */
-    var dist = Math.min(500 + Math.random() * 400, (w - x) / cos, (alto - y) / sin) + COLA;
+    /* la cabeza arranca en el punto de entrada con la cola todavía fuera de la
+       vista, y recorre hasta que la cola entera sale por la derecha o por el
+       final de la página */
+    var dist = Math.min((w - p.x) / cos, (alto - p.y) / sin) + COLA;
 
     /* el giro es sobre la cabeza (transform-origin a la derecha) */
-    el.style.setProperty('--x', (x - COLA) + 'px');
-    el.style.setProperty('--y', y + 'px');
+    el.style.setProperty('--x', (p.x - COLA) + 'px');
+    el.style.setProperty('--y', p.y + 'px');
     el.style.setProperty('--ang', ang + 'rad');
     el.style.setProperty('--dist', dist + 'px');
-    /* lento: unos 110 a 160 px por segundo */
-    el.style.setProperty('--dur', (dist / (110 + Math.random() * 50)).toFixed(2) + 's');
+    /* lento: unos 150 a 210 px por segundo */
+    el.style.setProperty('--dur', (dist / (150 + Math.random() * 60)).toFixed(2) + 's');
 
     el.classList.remove('va');
     void el.offsetWidth;                 /* reinicia la animación */
     el.classList.add('va');
   }
 
+  /* un solo turno para todas: sale una estrella cada 1.6 a 3.8 s; la
+     primera, enseguida, para que la página no empiece vacía */
+  function turno(espera) {
+    setTimeout(function () {
+      var f = libres.shift();
+      if (f) { lanzar(f); }
+      turno(1600 + Math.random() * 2200);
+    }, espera);
+  }
+
   if (lluvia && !reduceMov) {
     for (var k = 0; k < 7; k++) {
       (function (f) {
         f.className = 'fugaz' + (k % 3 === 0 ? ' azul' : '');
-        f.addEventListener('animationend', function () {
-          setTimeout(function () { lanzar(f); }, 1500 + Math.random() * 5000);
-        });
+        f.addEventListener('animationend', function () { libres.push(f); });
         lluvia.appendChild(f);
-        setTimeout(function () { lanzar(f); }, Math.random() * 9000);
+        libres.push(f);
       })(document.createElement('span'));
     }
+    turno(600);
   }
 
   /* ---------------------------------------------------------------
@@ -411,11 +439,31 @@
   ];
   var anchoCielo = 0;
 
+  /* franjas verticales (en coordenadas del cielo) de las secciones
+     .sin-estrellas: ahí no se dibujan estrellas fijas ni que titilan */
+  var vacias = [];
+  function enVacia(y) {
+    for (var i = 0; i < vacias.length; i++) {
+      if (y >= vacias[i][0] && y <= vacias[i][1]) { return true; }
+    }
+    return false;
+  }
+  /* una altura al azar que no caiga en una franja vacía */
+  function yLibre(h) {
+    for (var k = 0; k < 20; k++) {
+      var y = Math.floor(Math.random() * h);
+      if (!enVacia(y)) { return y; }
+    }
+    return -1;
+  }
+
   function sombras(n, w, h, alfaMin, alfaMax) {
     var out = [];
     for (var i = 0; i < n; i++) {
+      var y = yLibre(h);
+      if (y < 0) { continue; }
       var a = (alfaMin + Math.random() * (alfaMax - alfaMin)).toFixed(2);
-      out.push(Math.floor(Math.random() * w) + 'px ' + Math.floor(Math.random() * h) + 'px 0 rgba(255,255,255,' + a + ')');
+      out.push(Math.floor(Math.random() * w) + 'px ' + y + 'px 0 rgba(255,255,255,' + a + ')');
     }
     return out.join(',');
   }
@@ -449,6 +497,9 @@
     var w = cielo.clientWidth, h = cielo.clientHeight;
     cielo.innerHTML = '';
     anchoCielo = w;
+    vacias = Array.prototype.map.call(document.querySelectorAll('.main section.sin-estrellas'), function (sec) {
+      return [sec.offsetTop - arriba, sec.offsetTop - arriba + sec.offsetHeight];
+    });
 
     /* densidad: una estrella chica cada ~9.000 px² y una grande cada ~90.000 */
     var chicas = document.createElement('span'), grandes = document.createElement('span');
@@ -462,10 +513,12 @@
     /* las que titilan */
     var nb = Math.round(w * h / 60000);
     for (var i = 0; i < nb; i++) {
+      var yb = yLibre(h);
+      if (yb < 0) { continue; }
       var b = document.createElement('span');
       b.className = 'brillo';
       b.style.left = Math.floor(Math.random() * w) + 'px';
-      b.style.top  = Math.floor(Math.random() * h) + 'px';
+      b.style.top  = yb + 'px';
       b.style.setProperty('--t', (2.5 + Math.random() * 4).toFixed(2) + 's');
       b.style.setProperty('--d', (-Math.random() * 6).toFixed(2) + 's');
       cielo.appendChild(b);
@@ -476,7 +529,9 @@
        texto, así que ahí sólo queda el campo de estrellas */
     /* las secciones .sin-estrellas no llevan constelación */
     var secs = document.querySelectorAll('.main section:not(.hero):not(.sin-estrellas)');
-    var margen = Math.max(0, (w - 1000) / 2);
+    /* margen real a cada lado del contenido (el ancho de .inner, sin su relleno) */
+    var ref = document.querySelector('.main section:not(.hero) > .inner');
+    var margen = ref ? Math.max(0, ref.getBoundingClientRect().left + parseFloat(getComputedStyle(ref).paddingLeft)) : 0;
     if (margen < 100) { return; }
     Array.prototype.forEach.call(secs, function (sec, k) {
       var f = FIGURAS[k % FIGURAS.length];
