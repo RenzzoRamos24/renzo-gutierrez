@@ -3,7 +3,7 @@
 Sitio estático: HTML, CSS y JavaScript sin dependencias, sin compilar y sin
 framework. Se abre con doble clic o se sube tal cual a cualquier hosting.
 
-**En línea**: <https://renzzoramos24.github.io/renzo-gutierrez/>
+**En línea**: <https://renzogutierrezramos.com> (GitHub Pages con dominio propio; el archivo `CNAME` lo fija)
 
 ## Estructura
 
